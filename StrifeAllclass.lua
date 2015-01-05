@@ -182,10 +182,7 @@ _G.Game.Move = function(x,y)
  	p:EncodeF(y)
  	p:Encode1(0)
  	p:Encode4(0)
- 	p:Encode1(255)
- 	p:Encode1(255)
- 	p:Encode1(255)
- 	p:Encode1(255)
+ 	p:Encode4(-1)
  	p:Encode1(0)
  	p:Encode1(0)
  	Game.SendPacket(p)
@@ -198,10 +195,7 @@ _G.Game.AttackMove = function(x,y)
  	p:EncodeF(y)
  	p:Encode1(0)
  	p:Encode4(0)
- 	p:Encode1(255)
- 	p:Encode1(255)
- 	p:Encode1(255)
- 	p:Encode1(255)
+ 	p:Encode4(-1)
  	p:Encode1(0)
  	p:Encode1(0)
  	Game.SendPacket(p)
@@ -215,10 +209,7 @@ _G.Game.Attack = function(unit)
 	p:Encode4(unit.uid)
 	p:Encode4(0) 
 	p:Encode1(0)
-	p:Encode1(255)
-	p:Encode1(255)
-	p:Encode1(255)
-	p:Encode1(255)
+	p:Encode4(-1)
 	p:Encode1(0)
 	Game.SendPacket(p)
 end
@@ -256,10 +247,7 @@ end
 _G.Game.Emote = {}
 _G.Game.Emote.Send = function()
 	local p = Game.CLoLPacket(0xE4)
-	p:Encode1(255)
-	p:Encode1(255)
-	p:Encode1(255)
-	p:Encode1(255)
+	p:Encode4(-1)
 	Game.SendPacket(p)
 end
 --end Emote--
@@ -398,14 +386,6 @@ _G.Game.EntityManager_ALLY = 1
 _G.Game.EntityManager_ENEMY = 2
 _G.Game.EntityManager_ALL = 3
 --End EntityManager--
-
-
-
-
-
-
-
-
 
 
 -- Prediction Start ---
@@ -609,7 +589,6 @@ _G.Allclass.Draw3D.DrawText = function(text, x, y, z, size, color)
 end
 -- Draw3D Ende---
 
-
 -- FPS ---
 if not _G.Allclass then _G.Allclass = {} end
 if not _G.Allclass.FPS then _G.Allclass.FPS = {} end
@@ -638,3 +617,75 @@ _G.Allclass.FPS.GetFPS = function()
 	return avgFps
 end
 -- FPS ENDE ---
+
+--Utility 
+class "Utility"
+
+function Utility:__init()
+	--Default for all heros
+	self.AACastTime = 1100 
+end 
+
+--return attackspeed in ms
+function Utility:ComputeAASpeed(unit)
+	return self.AACastTime / unit.attackSpeed 
+end 
+
+function Utility:GetVirtualHP(unit)
+	return unit.health * (1 + (unit.armor / 100))
+end
+
+if not _G.Allclass then _G.Allclass = {} end
+_G.Allclass.Utility = Utility()
+--End Utility 
+
+--DamageLib--
+class "DamageLib"
+
+function DamageLib:__init()
+	self.Spells = {}
+	self.IDS = { ["Q"] = 1, 
+	["W"] = 2,
+	["E"] = 3,
+	["R"] = 4 
+	}
+end 
+--Dunno if you need Type tho 
+function DamageLib:RegisterSpell(Spell,baseDamage,perLevel,Type)
+	self.Spells[Spell] = {baseDamage = baseDamage, perLevel = perLevel, Type = Type}
+end 
+
+function DamageLib:GetDamage(unit,Target,Spell)
+	assert(self.Spells[Spell], "Please Register the spell first")
+	local S = self.Spells[Spell]
+	local DefaultDmg = S.baseDamage + (S.perLevel * unit:GetAbility(self:GetAbilityID(Spell)).level)
+	local pureDamage = self:GetPDamage(myHero,DefaultDmg)
+	return (S.Type == "_AD" and self:CalcDamage(Target,pureDamage)) or self:CalcMagicDamage(Target,pureDamage)
+end 
+--//return damage without taking care of armor magicRes...
+--//unit.power still not fixed giving 0
+function DamageLib:GetPDamage(unit,Damage)
+	return Damage * (unit.power / 100) 
+end
+
+function DamageLib:CalcDamage(unit,Damage)
+	return Damage / (1 + (unit.armor / 100))
+end 
+
+function DamageLib:CalcMagicDamage(unit,Damage)
+	return Damage / (1 + (unit.magicArmor / 100))
+end 
+
+function DamageLib:ComputeAADmg(unit,Target)
+	local PADmg = unit.baseDamage * (unit.power / 100)
+	return self:CalcDamage(Target,PADmg)
+end
+
+function DamageLib:GetAbilityID(Spell)
+	return self.IDS[Spell]
+end
+
+if not _G.Allclass then _G.Allclass = {} end
+_G.Allclass.DamageLib = DamageLib()
+
+--End DamageLib--
