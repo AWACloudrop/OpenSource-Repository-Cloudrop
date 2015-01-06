@@ -622,7 +622,7 @@ end
 class "Utility"
 
 function Utility:__init()
-	--Default for all heros
+	--Default for all heros (Attack cooldown)
 	self.AACastTime = 1100 
 end 
 
