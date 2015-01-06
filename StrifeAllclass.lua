@@ -659,7 +659,7 @@ function DamageLib:GetDamage(unit,Target,Spell)
 	assert(self.Spells[Spell], "Please Register the spell first")
 	local S = self.Spells[Spell]
 	local DefaultDmg = S.baseDamage + (S.perLevel * unit:GetAbility(self:GetAbilityID(Spell)).level)
-	local pureDamage = self:GetPDamage(myHero,DefaultDmg)
+	local pureDamage = self:GetPDamage(unit,DefaultDmg)
 	return (S.Type == "_AD" and self:CalcDamage(Target,pureDamage)) or self:CalcMagicDamage(Target,pureDamage)
 end 
 --//return damage without taking care of armor magicRes...
