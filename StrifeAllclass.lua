@@ -622,7 +622,7 @@ end
 class "Utility"
 
 function Utility:__init()
-	--Default for all heros (Attack cooldown)
+	--Default for all heros(attack cooldown)
 	self.AACastTime = 1100 
 end 
 
@@ -639,29 +639,207 @@ if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.Utility = Utility()
 --End Utility 
 
+class "DataBase"
+
+function DataBase:__init()
+	self.IDS = { ["Q"] = 1, 
+		["W"] = 2,
+		["E"] = 3,
+		["R"] = 4 
+	}
+	--Credits Mario <3
+	self.Heroes = {
+		['Ace'] = {
+			[1]  = { basedmg = 60,  perlvl = 35 },
+			[2]  = { basedmg = 50,  perlvl = 25 },
+			[3]  = { basedmg = 18,  perlvl = 12 },
+			[4]  = { basedmg = 170, perlvl = 85 },
+		},
+		['Bastion'] = {
+			[1]  = { basedmg = 60,  perlvl = 30 },
+			[2]  = { basedmg = 50,  perlvl = 25 },
+			[3]  = { basedmg = 0,   perlvl = 40 },
+			[4]  = { basedmg = 140, perlvl = 60 }		
+		},
+		['Blazer'] = {
+			[1]  = { basedmg = 65,  perlvl = 50 },
+			[2]  = { basedmg = 60,  perlvl = 20 },
+			[3]  = { basedmg = 0,   perlvl = 3  } -- Passive per auto
+		},
+		['Bo'] = {
+			[1]  = { basedmg = 20,  perlvl = 20 },
+			[2]  = { basedmg = 55,  perlvl = 25 },
+			[4]  = { basedmg = 100, perlvl = 40 }
+		},
+		['Caprice'] = {
+			[1]  = { basedmg = 50,  perlvl = 20 },
+			[2]  = { basedmg = 45,  perlvl = 25 },
+			[3]  = { basedmg = 15,  perlvl = 15 },
+			[4]  = { basedmg = 60,  perlvl = 30 }
+		},
+		['Carter'] = {
+			[1]  = { basedmg = 45,  perlvl = 25 },
+			[2]  = { basedmg = 50,  perlvl = 30 },
+			[3]  = { basedmg = 15,  perlvl = 10 }, -- Damage per sec
+			[4]  = { basedmg = 100, perlvl = 50 }
+		},
+		['Chester'] = {
+			[1]  = { basedmg = 15,  perlvl = 25 }, -- Damage per knight this*4 = max damage
+			[2]  = { basedmg = 50,  perlvl = 30 },
+			[4]  = { basedmg = 60,  perlvl = 30 } -- Damage per second
+		},
+		['Claudessa'] = {
+			[1]  = { basedmg = 55,  perlvl = 25 },
+			[3]  = { basedmg = 10,  perlvl = 10 }, -- Passive per auto
+			[4]  = { basedmg = 26,  perlvl = 12 }  -- Damage per sec
+		},
+		['Fetterstone'] = {
+			[1]  = { basedmg = 35,  perlvl = 15 },
+			[2]  = { basedmg = 70,  perlvl = 35 }
+		},
+		['Gokong'] = {
+			[1]  = { basedmg = 0,   perlvl = 15 },
+			[2]  = { basedmg = 40,  perlvl = 25 },
+			[3]  = { basedmg = -4,  perlvl = 8  }  -- Passive per auto
+		},
+		['Hale'] = {
+			[1]  = { basedmg = 45,  perlvl = 25 },
+			[4]  = { basedmg = 100, perlvl = 50 }
+		},
+		['Harrower'] = {
+			[1]  = { basedmg = 15,  perlvl = 15 }
+		},
+		['Iah'] = {
+			[1]  = { basedmg = 15,  perlvl = 5  }, -- per sand thingy attack
+			[2]  = { basedmg = 70,  perlvl = 50 }, -- 3 secs of damage (max)
+			[4]  = { basedmg = 110, perlvl = 60 } -- heals allies for same amount that it deals to enemies
+		},
+		['JinShe'] = {
+			[1]  = { basedmg = 50,  perlvl = 25 },
+			[2]  = { basedmg = 45,  perlvl = 25 },
+			[4]  = { basedmg = 12,  perlvl = 6  } -- Damage per sec
+		},
+		['LadyTinder'] = {
+			[1]  = { basedmg = 50,  perlvl = 30 },
+			[2]  = { basedmg = 55,  perlvl = 30 },
+			[4]  = { basedmg = 40,  perlvl = 20 } -- Damager per plant attack
+		},
+		['Hero_Malady'] = {
+			[1]  = { basedmg = 55,  perlvl = 25 },
+			[2]  = { basedmg = 90,  perlvl = 60 }, -- 5 secs of damage (max)
+			[4]  = { basedmg = 180, perlvl = 90 }
+		},
+		['Minerva'] = {
+			[1]  = { basedmg = 5,   perlvl = 15 },
+			[2]  = { basedmg = 50,  perlvl = 35 },
+			[4]  = { basedmg = 100, perlvl = 50 } -- + 50% if behind target
+		},
+		['Moxie'] = {
+			[1]  = { basedmg = 40,  perlvl = 25 },
+			[2]  = { basedmg = 55,  perlvl = 30 },
+			[4]  = { basedmg = 95,  perlvl = 45 } -- Min Damage (if enemy not in center)
+			--[5] = {basedmg = 50,  perlvl = 25} Additional Damage if Enemy in Center
+			--[6] = {basedmg = 145,  perlvl = 70} Full Damage (if enemy in center)
+		},
+		['Nikolai'] = {
+			[2]  = { basedmg = 45,  perlvl = 25 },
+			[3]  = { basedmg = 4,   perlvl = 2  }, -- % of their max hp so (this/100) * unit.maxhp = real damage
+			[4]  = { basedmg = 130, perlvl = 65 }
+		},
+		['Ray'] = {
+			[1]  = { basedmg = 55,  perlvl = 35 },
+			[2]  = { basedmg = 50,  perlvl = 25 },
+			[3]  = { basedmg = 10,  perlvl = 15 }, -- Bonus Damage on next attack
+			[4]  = { basedmg = 140, perlvl = 70 } -- Reduced by 15% for each hiro hit
+		},
+		['Rook'] = {
+			[1]  = { basedmg = 15,  perlvl = 35 },
+			[2]  = { basedmg = 20,  perlvl = 40 },
+			[3]  = { basedmg = 1,   perlvl = 1  }, -- Bonus Attack Damage per stack
+			[4]  = { basedmg = 135, perlvl = 65 } -- Max Damage based on distance
+		},
+		['Shank'] = {
+			[1]  = { basedmg = 50,  perlvl = 35 },
+			[4]  = { basedmg = 120, perlvl = 60 }
+		},
+		['Trixie'] = {
+			[1]  = { basedmg = 60,  perlvl = 25 },
+			[3]  = { basedmg = 45,  perlvl = 20 } -- Damage per sec max 5 secs (this*5)
+		},
+		['Vermillion'] = {
+			[1]  = { basedmg = 60,  perlvl = 25 },
+			[3]  = { basedmg = 100, perlvl = 50 }
+		},
+		['Vex'] = {
+			[1]  = { basedmg = 60,  perlvl = 35 },
+			[2]  = { basedmg = 80,  perlvl = 50 }, -- Up to 70% bonus damage if single target
+			[4]  = { basedmg = 100, perlvl = 50 }
+		},
+		['Zaku'] = {
+			[1]  = { basedmg = 45,  perlvl = 20 },
+			[2]  = { basedmg = 45,  perlvl = 30 }, -- Up to 70% bonus damage if single target
+			[4]  = { basedmg = 50,  perlvl = 50 } -- Roaches Damage
+		}
+	}
+end
+
+function DataBase:GetSpellInfo(Hero,Spell)
+	if type(Spell) == "string" then Spell = self:GetAbilityID(Spell) end 
+	assert(self.Heroes[Hero.name][Spell],"Error: Spell or Hero not found !") 
+	return self.Heroes[Hero.name][Spell]
+end
+
+function DataBase:GetRotation(hero)
+	local Rotation = {}
+
+    for i = 1, 4 do 
+        if self.Heroes[hero.name][i] ~= nil then 
+            table.insert(Rotation,i)
+        end 
+    end 
+
+    return Rotation
+end
+
+function DataBase:GetAbilityID(Spell)
+	return self.IDS[Spell]
+end
+
+
+if not _G.Allclass then _G.Allclass = {} end
+_G.Allclass.DataBase = DataBase()
+
 --DamageLib--
 class "DamageLib"
 
 function DamageLib:__init()
 	self.Spells = {}
-	self.IDS = { ["Q"] = 1, 
-	["W"] = 2,
-	["E"] = 3,
-	["R"] = 4 
-	}
+	self.RegSpells = {}
 end 
---Dunno if you need Type tho 
-function DamageLib:RegisterSpell(Spell,baseDamage,perLevel,Type)
+
+--//Not Needed if you don't want to override the db info  
+function DamageLib:RegisterSpell(Spell,baseDamage,perLevel)
 	self.Spells[Spell] = {baseDamage = baseDamage, perLevel = perLevel, Type = Type}
+	table.insert(self.RegSpells,Spell)
 end 
 
 function DamageLib:GetDamage(unit,Target,Spell)
-	assert(self.Spells[Spell], "Please Register the spell first")
-	local S = self.Spells[Spell]
-	local DefaultDmg = S.baseDamage + (S.perLevel * unit:GetAbility(self:GetAbilityID(Spell)).level)
-	local pureDamage = self:GetPDamage(unit,DefaultDmg)
-	return (S.Type == "_AD" and self:CalcDamage(Target,pureDamage)) or self:CalcMagicDamage(Target,pureDamage)
+	if type(Spell) == "string" then Spell = Allclass.DataBase:GetAbilityID(Spell) end 
+	--//if No Overriden info reads from db
+	local S = (self.Spells[Spell] ~= nil and self.Spells[Spell]) or Allclass.DataBase:GetSpellInfo(unit,Spell)
+	local DefaultDmg = S.basedmg + (S.perlvl * unit:GetAbility(Spell).level)
+	local pureDamage = self:GetPDamage(myHero,DefaultDmg)
+	return self:CalcMagicDamage(unit,pureDamage)
 end 
+
+function DamageLib:GetPureDamage(unit,Spell)
+	if type(Spell) == "string" then Spell = Allclass.DataBase:GetAbilityID(Spell) end 
+	local S = (self.Spells[Spell] ~= nil and self.Spells[Spell]) or Allclass.DataBase:GetSpellInfo(unit,Spell)
+	local DefaultDmg = S.basedmg + (S.perlvl * unit:GetAbility(Spell).level)
+
+	return self:GetPDamage(myHero,DefaultDmg)
+end
+
 --//return damage without taking care of armor magicRes...
 --//unit.power still not fixed giving 0
 function DamageLib:GetPDamage(unit,Damage)
@@ -681,11 +859,57 @@ function DamageLib:ComputeAADmg(unit,Target)
 	return self:CalcDamage(Target,PADmg)
 end
 
-function DamageLib:GetAbilityID(Spell)
-	return self.IDS[Spell]
+function DamageLib:GetComboDamage(unit,Target,Rotation)
+	local TDamage, Rotation = 0, (Rotation ~= nil and Rotation) or 
+		(#self.RegSpells > 0 and self.RegSpells)  or Allclass.DataBase:GetRotation(unit)
+
+	for each, Spell in pairs(Rotation) do 
+		local D = self:GetPureDamage(unit,Spell)
+		TDamage = TDamage + D 
+	end 
+
+	return (Target ~=  nil and self:CalcMagicDamage(Target,TDamage)) or TDamage
 end
+
+function DamageLib:SetCustomRotation(Rotation)
+	self.RegSpells = Rotation
+end 
 
 if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.DamageLib = DamageLib()
 
 --End DamageLib--
+
+class "TargetSelector"
+
+function TargetSelector:__init(range,mode)
+	self.range = range 
+	self.mode = mode 
+	self.target = self:GetTarget(self.mode) 
+end
+
+function TargetSelector:GetTarget() 
+	local BestDmg, BestHero = 0, nil
+	for each,Player in ipairs(sh.players) do 
+		if Player.hero.valid and myHero.pos:DistanceTo(Player.hero.pos) < self.range then 
+			local IncD = self:_GFBM(myHero,Player.hero)
+			if IncD > BestDmg then 
+				BestHero = Player.hero 
+				BestDmg = IncD
+			end 
+		end 
+	end
+end
+
+function TargetSelector:_GFBM(u,v)
+	if self.mode == "AA_Damage" then 
+		return Allclass.DamageLib:ComputeAADmg(u)
+	elseif self.mode == "Less_Cast" then 
+		return Allclass.DamageLib:GetComboDamage(u,v)
+	end  
+end
+
+
+function TargetSelector:ForceTarget(target) 
+	self.target = target 
+end
