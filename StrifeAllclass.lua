@@ -649,77 +649,77 @@ function DataBase:__init()
 	}
 	--Credits Mario <3
 	self.Heroes = {
-		['Ace'] = {
+		['Hero_Ace'] = {
 			[1]  = { basedmg = 60,  perlvl = 35 },
 			[2]  = { basedmg = 50,  perlvl = 25 },
 			[3]  = { basedmg = 18,  perlvl = 12 },
 			[4]  = { basedmg = 170, perlvl = 85 },
 		},
-		['Bastion'] = {
+		['Hero_Bastion'] = {
 			[1]  = { basedmg = 60,  perlvl = 30 },
 			[2]  = { basedmg = 50,  perlvl = 25 },
 			[3]  = { basedmg = 0,   perlvl = 40 },
 			[4]  = { basedmg = 140, perlvl = 60 }		
 		},
-		['Blazer'] = {
+		['Hero_Blazer'] = {
 			[1]  = { basedmg = 65,  perlvl = 50 },
 			[2]  = { basedmg = 60,  perlvl = 20 },
 			[3]  = { basedmg = 0,   perlvl = 3  } -- Passive per auto
 		},
-		['Bo'] = {
+		['Hero_Bo'] = {
 			[1]  = { basedmg = 20,  perlvl = 20 },
 			[2]  = { basedmg = 55,  perlvl = 25 },
 			[4]  = { basedmg = 100, perlvl = 40 }
 		},
-		['Caprice'] = {
+		['Hero_Caprice'] = {
 			[1]  = { basedmg = 50,  perlvl = 20 },
 			[2]  = { basedmg = 45,  perlvl = 25 },
 			[3]  = { basedmg = 15,  perlvl = 15 },
 			[4]  = { basedmg = 60,  perlvl = 30 }
 		},
-		['Carter'] = {
+		['Hero_Carter'] = {
 			[1]  = { basedmg = 45,  perlvl = 25 },
 			[2]  = { basedmg = 50,  perlvl = 30 },
 			[3]  = { basedmg = 15,  perlvl = 10 }, -- Damage per sec
 			[4]  = { basedmg = 100, perlvl = 50 }
 		},
-		['Chester'] = {
+		['Hero_Chester'] = {
 			[1]  = { basedmg = 15,  perlvl = 25 }, -- Damage per knight this*4 = max damage
 			[2]  = { basedmg = 50,  perlvl = 30 },
 			[4]  = { basedmg = 60,  perlvl = 30 } -- Damage per second
 		},
-		['Claudessa'] = {
+		['Hero_Claudessa'] = {
 			[1]  = { basedmg = 55,  perlvl = 25 },
 			[3]  = { basedmg = 10,  perlvl = 10 }, -- Passive per auto
 			[4]  = { basedmg = 26,  perlvl = 12 }  -- Damage per sec
 		},
-		['Fetterstone'] = {
+		['Hero_Fetterstone'] = {
 			[1]  = { basedmg = 35,  perlvl = 15 },
 			[2]  = { basedmg = 70,  perlvl = 35 }
 		},
-		['Gokong'] = {
+		['Hero_Gokong'] = {
 			[1]  = { basedmg = 0,   perlvl = 15 },
 			[2]  = { basedmg = 40,  perlvl = 25 },
 			[3]  = { basedmg = -4,  perlvl = 8  }  -- Passive per auto
 		},
-		['Hale'] = {
+		['Hero_Hale'] = {
 			[1]  = { basedmg = 45,  perlvl = 25 },
 			[4]  = { basedmg = 100, perlvl = 50 }
 		},
-		['Harrower'] = {
+		['Hero_Harrower'] = {
 			[1]  = { basedmg = 15,  perlvl = 15 }
 		},
-		['Iah'] = {
+		['Hero_Iah'] = {
 			[1]  = { basedmg = 15,  perlvl = 5  }, -- per sand thingy attack
 			[2]  = { basedmg = 70,  perlvl = 50 }, -- 3 secs of damage (max)
 			[4]  = { basedmg = 110, perlvl = 60 } -- heals allies for same amount that it deals to enemies
 		},
-		['JinShe'] = {
+		['Hero_JinShe'] = {
 			[1]  = { basedmg = 50,  perlvl = 25 },
 			[2]  = { basedmg = 45,  perlvl = 25 },
 			[4]  = { basedmg = 12,  perlvl = 6  } -- Damage per sec
 		},
-		['LadyTinder'] = {
+		['Hero_LadyTinder'] = {
 			[1]  = { basedmg = 50,  perlvl = 30 },
 			[2]  = { basedmg = 55,  perlvl = 30 },
 			[4]  = { basedmg = 40,  perlvl = 20 } -- Damager per plant attack
@@ -729,53 +729,53 @@ function DataBase:__init()
 			[2]  = { basedmg = 90,  perlvl = 60 }, -- 5 secs of damage (max)
 			[4]  = { basedmg = 180, perlvl = 90 }
 		},
-		['Minerva'] = {
+		['Hero_Minerva'] = {
 			[1]  = { basedmg = 5,   perlvl = 15 },
 			[2]  = { basedmg = 50,  perlvl = 35 },
 			[4]  = { basedmg = 100, perlvl = 50 } -- + 50% if behind target
 		},
-		['Moxie'] = {
+		['Hero_Moxie'] = {
 			[1]  = { basedmg = 40,  perlvl = 25 },
 			[2]  = { basedmg = 55,  perlvl = 30 },
 			[4]  = { basedmg = 95,  perlvl = 45 } -- Min Damage (if enemy not in center)
 			--[5] = {basedmg = 50,  perlvl = 25} Additional Damage if Enemy in Center
 			--[6] = {basedmg = 145,  perlvl = 70} Full Damage (if enemy in center)
 		},
-		['Nikolai'] = {
+		['Hero_Nikolai'] = {
 			[2]  = { basedmg = 45,  perlvl = 25 },
 			[3]  = { basedmg = 4,   perlvl = 2  }, -- % of their max hp so (this/100) * unit.maxhp = real damage
 			[4]  = { basedmg = 130, perlvl = 65 }
 		},
-		['Ray'] = {
+		['Hero_Ray'] = {
 			[1]  = { basedmg = 55,  perlvl = 35 },
 			[2]  = { basedmg = 50,  perlvl = 25 },
 			[3]  = { basedmg = 10,  perlvl = 15 }, -- Bonus Damage on next attack
 			[4]  = { basedmg = 140, perlvl = 70 } -- Reduced by 15% for each hiro hit
 		},
-		['Rook'] = {
+		['Hero_Rook'] = {
 			[1]  = { basedmg = 15,  perlvl = 35 },
 			[2]  = { basedmg = 20,  perlvl = 40 },
 			[3]  = { basedmg = 1,   perlvl = 1  }, -- Bonus Attack Damage per stack
 			[4]  = { basedmg = 135, perlvl = 65 } -- Max Damage based on distance
 		},
-		['Shank'] = {
+		['Hero_Shank'] = {
 			[1]  = { basedmg = 50,  perlvl = 35 },
 			[4]  = { basedmg = 120, perlvl = 60 }
 		},
-		['Trixie'] = {
+		['Hero_Trixie'] = {
 			[1]  = { basedmg = 60,  perlvl = 25 },
 			[3]  = { basedmg = 45,  perlvl = 20 } -- Damage per sec max 5 secs (this*5)
 		},
-		['Vermillion'] = {
+		['Hero_Vermillion'] = {
 			[1]  = { basedmg = 60,  perlvl = 25 },
 			[3]  = { basedmg = 100, perlvl = 50 }
 		},
-		['Vex'] = {
+		['Hero_Vex'] = {
 			[1]  = { basedmg = 60,  perlvl = 35 },
 			[2]  = { basedmg = 80,  perlvl = 50 }, -- Up to 70% bonus damage if single target
 			[4]  = { basedmg = 100, perlvl = 50 }
 		},
-		['Zaku'] = {
+		['Hero_Zaku'] = {
 			[1]  = { basedmg = 45,  perlvl = 20 },
 			[2]  = { basedmg = 45,  perlvl = 30 }, -- Up to 70% bonus damage if single target
 			[4]  = { basedmg = 50,  perlvl = 50 } -- Roaches Damage
@@ -879,4 +879,3 @@ if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.DamageLib = DamageLib()
 
 --End DamageLib--
-
