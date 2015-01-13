@@ -1,4 +1,7 @@
-local Heros = { 
+class "SpellDB" 
+
+function SpellDB:__init() 
+self.Heros = { 
 ['ace'] =  { 
 ['ability_01'] = {
 	['name'] = "Ability_Ace1",
@@ -2107,3 +2110,4 @@ local Heros = {
 }, 
 
 } 
+end 
