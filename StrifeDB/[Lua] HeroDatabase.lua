@@ -13,10 +13,29 @@ class "HeroDatabase"
 
 function HeroDatabase:__init()
 self.Heros = {
+
+--[[
+
+ _ _              _ _
+( | )            ( | )
+ V V __ _  ___ ___V V
+    / _` |/ __/ _ \
+   | (_| | (_|  __/  _
+    \__,_|\___\___| ( )
+                    |/
+
+]]
+
 ["Hero_Ace"] =  {
+	['name'] = "Hero_Ace",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.45",
 	['modelscale'] = "1.125",
-	['effectscale'] = "1.065",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "52",
@@ -46,6 +65,19 @@ self.Heros = {
 	['manaregen'] = { [1] = 2.9,[2] = 2.96,[3] = 3.02,[4] = 3.08,[5] = 3.14,[6] = 3.2,[7] = 3.26,[8] = 3.32,[9] = 3.38,[10] = 3.44,[11] = 3.5,[12] = 3.56,[13] = 3.62,[14] = 3.68,[15] = 3.74, },
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_Ace1",
+	['inventory1'] = "Ability_Ace2",
+	['inventory2'] = "Ability_Ace3",
+	['inventory3'] = "Ability_Ace4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "350",
@@ -57,7 +89,7 @@ self.Heros = {
 	['attacknumanims'] = "2",
 	['attackoffset'] = "0 100 110",
 	['attackprojectile'] = "",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackrange'] = "180",
 	['attacktype'] = "melee",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -71,11 +103,160 @@ self.Heros = {
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "12 0 -110",
+	['previewangles'] = "33 0 0",
+	['previewscale'] = "1.18",
+	['storepos'] = "0 0 -100",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.2",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Topps",
+	['itembuild'] = "Ace",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 1,[4] = 3,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "2000",
+	['corpsefadetime'] = "4000",
+	['walkanim'] = "ability_2_sprint",
+	['attackanim'] = "ability_2_attack",
+	['attacknumanims'] = "1",
+	['attackduration'] = "200",
+	['attackactiontime'] = "200",
+	['attackcooldown'] = "1000",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
 },
+
+--[[
+
+ _ _ _                     _ _ _       _ _
+( | ) |                   | (_) |     ( | )
+ V V| |__   __ _ _ __   __| |_| |_ ___ V V
+    | '_ \ / _` | '_ \ / _` | | __/ _ \
+    | |_) | (_| | | | | (_| | | || (_) |  _
+    |_.__/ \__,_|_| |_|\__,_|_|\__\___/  ( )
+                                         |/
+
+
+]]
+
+["Hero_Bandito"] =  {
+	['name'] = "Hero_Bandito",
+	['team'] = "abandoned",
+	['skin'] = "",
+	['showinpractice'] = "true",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.4",
+	['modelscale'] = "1.3",
+	['boundsheight'] = "112",
+	['boundsradius'] = "24",
+	['selectionradius'] = "44",
+	['targetoffset'] = "0 0 92",
+	['searchradius'] = "105",
+	['minsearchradius'] = "65",
+	['searchheight'] = "125",
+	['category'] = "cc magic",
+	['difficulty'] = "2",
+	['movespeed'] = "330",
+	['turnrate'] = "900",
+	['turnsmoothing'] = "0.01",
+	['rolesurvival'] = "0",
+	['rolecrowdcontrol'] = "2",
+	['rolephysicaldamage'] = "0",
+	['rolemagicdamage'] = "4",
+	['roleutility'] = "2",
+	['maxhealth'] = { [1] = 678,[2] = 724,[3] = 771,[4] = 818,[5] = 864,[6] = 911,[7] = 957,[8] = 1004,[9] = 1051,[10] = 1097,[11] = 1144,[12] = 1191,[13] = 1237,[14] = 1284,[15] = 1331, },
+	['maxhealthperlevel'] = "0",
+	['healthregen'] = { [1] = 2.02,[2] = 2.16,[3] = 2.3,[4] = 2.44,[5] = 2.58,[6] = 2.72,[7] = 2.86,[8] = 3,[9] = 3.14,[10] = 3.28,[11] = 3.42,[12] = 3.56,[13] = 3.7,[14] = 3.84,[15] = 3.98, },
+	['healthproportionregen'] = "0",
+	['unitcriticalmultiplier'] = "1.0",
+	['maxmana'] = "288",
+	['maxmanaperlevel'] = "10",
+	['manaregen'] = { [1] = 3.25,[2] = 3.32,[3] = 3.39,[4] = 3.45,[5] = 3.52,[6] = 3.59,[7] = 3.65,[8] = 3.72,[9] = 3.79,[10] = 3.86,[11] = 3.92,[12] = 3.99,[13] = 4.06,[14] = 4.13,[15] = 4.19, },
+	['manaproportionregen'] = "0.0",
+	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Bandito1",
+	['inventory1'] = "Ability_Bandito2",
+	['inventory2'] = "Ability_Bandito3",
+	['inventory3'] = "Ability_Bandito4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
+	['powerperlevel'] = "0",
+	['attackduration'] = "500",
+	['attackactiontime'] = "300",
+	['attackcooldown'] = "1100",
+	['attackdamagemin'] = { [1] = 54,[2] = 56.49,[3] = 58.97,[4] = 61.46,[5] = 63.94,[6] = 66.43,[7] = 68.91,[8] = 71.4,[9] = 73.89,[10] = 76.37,[11] = 78.86,[12] = 81.34,[13] = 83.83,[14] = 86.31,[15] = 88.8, },
+	['attackdamageminperlevel'] = "0",
+	['attackdamagemax'] = { [1] = 54,[2] = 56.49,[3] = 58.97,[4] = 61.46,[5] = 63.94,[6] = 66.43,[7] = 68.91,[8] = 71.4,[9] = 73.89,[10] = 76.37,[11] = 78.86,[12] = 81.34,[13] = 83.83,[14] = 86.31,[15] = 88.8, },
+	['attackdamagemaxperlevel'] = "0",
+	['attacknumanims'] = "2",
+	['attackoffset'] = "-50 75 115",
+	['attackprojectile'] = "Projectile_Bandito_Attack",
+	['attackrange'] = "500",
+	['attacktype'] = "ranged",
+	['attackdamagetype'] = "AttackDamage",
+	['combattype'] = "Hero",
+	['aggrorange'] = "600",
+	['sightrangeday'] = "1500",
+	['sightrangenight'] = "1500",
+	['wanderrange'] = "250",
+	['corpsetime'] = "3000",
+	['corpsefadetime'] = "3000",
+	['primaryattribute'] = "Intelligence",
+	['strength'] = "0",
+	['strengthperlevel'] = "0",
+	['agility'] = "0",
+	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "30 0 -100",
+	['previewangles'] = "20 0 0",
+	['previewscale'] = "1.3",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.35",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Bandito",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 2,[5] = 2,[6] = 4,[7] = 2,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 1,[13] = 1,[14] = 1,[15] = 4, },
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+},
+
+--[[
+
+ _ _ _               _   _            _ _
+( | ) |             | | (_)          ( | )
+ V V| |__   __ _ ___| |_ _  ___  _ __ V V
+    | '_ \ / _` / __| __| |/ _ \| '_ \
+    | |_) | (_| \__ \ |_| | (_) | | | |  _
+    |_.__/ \__,_|___/\__|_|\___/|_| |_| ( )
+                                        |/
+
+]]
+
 ["Hero_Bastion"] =  {
+	['name'] = "Hero_Bastion",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.35",
 	['modelscale'] = ".975",
-	['effectscale'] = "1.0575",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "52",
@@ -106,6 +287,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_Bastion1",
+	['inventory1'] = "Ability_Bastion2",
+	['inventory2'] = "Ability_Bastion3",
+	['inventory3'] = "Ability_Bastion4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "350",
@@ -132,11 +325,51 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
+	['previewpos'] = "20 0 -80",
+	['previewangles'] = "35 -15 15",
+	['previewscale'] = "1.1",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.65",
+	['infoheight'] = "275",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Topps",
+	['itembuild'] = "Bastion",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 1,[4] = 3,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "2000",
+	['corpsefadetime'] = "4000",
+	['attackanim'] = "str_attack_2",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true"		,
 },
+
+--[[
+
+ _ _ _     _                   _ _
+( | ) |   | |                 ( | )
+ V V| |__ | | __ _ _______ _ __V V
+    | '_ \| |/ _` |_  / _ \ '__|
+    | |_) | | (_| |/ /  __/ |     _
+    |_.__/|_|\__,_/___\___|_|    ( )
+                                 |/
+
+]]
+
 ["Hero_Blazer"] =  {
+	['name'] = "Hero_Blazer",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.6",
 	['modelscale'] = "1.15",
-	['effectscale'] = "1.025",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -167,6 +400,19 @@ self.Heros = {
 	['manaregen'] = { [1] = 3.25,[2] = 3.32,[3] = 3.39,[4] = 3.45,[5] = 3.52,[6] = 3.59,[7] = 3.65,[8] = 3.72,[9] = 3.79,[10] = 3.86,[11] = 3.92,[12] = 3.99,[13] = 4.06,[14] = 4.13,[15] = 4.19, },
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Blazer1",
+	['inventory1'] = "Ability_Blazer2",
+	['inventory2'] = "Ability_Blazer3",
+	['inventory3'] = "Ability_Blazer4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "250",
@@ -177,10 +423,10 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['tiltfactor'] = "0.0",
-	['attackstarteffect'] = "effects/attack.effect",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['tiltspeed'] = "90.0",
+	['attackoffset'] = "-5 200 200",
+	['attackprojectile'] = "Projectile_Blazer_Attack",
+	['attackrange'] = "550",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -191,10 +437,54 @@ self.Heros = {
 	['primaryattribute'] = "Intelligence",
 	['strength'] = "0",
 	['strengthperlevel'] = "0",
+	['agility'] = "0",
+	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "18 0 -180",
+	['previewangles'] = "25 0 0",
+	['previewscale'] = "1.33",
+	['storepos'] = "0 0 -120",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.45",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Razer",
+	['itembuild'] = "Blazer",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 2,[5] = 2,[6] = 4,[7] = 2,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 1,[13] = 1,[14] = 1,[15] = 4, },
+	['corpsetime'] = "1500",
+	['corpsefadetime'] = "4000",
+	['walkanim'] = "ability_1_walk",
+	['idleanim'] = "ability_1_aim",
+	['attackprojectile'] = "Projectile_Frost",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "aggro",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _ _          _ _
+( | ) |        ( | )
+ V V| |__   ___ V V
+    | '_ \ / _ \
+    | |_) | (_) |  _
+    |_.__/ \___/  ( )
+                  |/
+
+
+]]
+
 ["Hero_Bo"] =  {
+	['name'] = "Hero_Bo",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.25",
 	['modelscale'] = "1.05",
-	['effectscale'] = "1.1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -226,18 +516,30 @@ self.Heros = {
 	['inventory3'] = "Ability_Bo4",
 	['inventory4'] = "",
 	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
+	['powerperlevel'] = "0",
+	['attackduration'] = "400",
+	['attackactiontime'] = "350",
+	['attackcooldown'] = "1100",
+	['attackdamagemin'] = { [1] = 63,[2] = 65.93,[3] = 68.86,[4] = 71.79,[5] = 74.71,[6] = 77.64,[7] = 80.57,[8] = 83.5,[9] = 86.43,[10] = 89.36,[11] = 92.29,[12] = 95.21,[13] = 98.14,[14] = 101.07,[15] = 104, },
+	['attackdamageminperlevel'] = "0",
+	['attackdamagemax'] = { [1] = 63,[2] = 65.93,[3] = 68.86,[4] = 71.79,[5] = 74.71,[6] = 77.64,[7] = 80.57,[8] = 83.5,[9] = 86.43,[10] = 89.36,[11] = 92.29,[12] = 95.21,[13] = 98.14,[14] = 101.07,[15] = 104, },
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['attackoffset'] = "0 30 100",
 	['attackprojectile'] = "",
 	['attackrange'] = "180",
-	['attackstarteffect'] = "",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "effects/impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
 	['attacktype'] = "melee",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
+	['aggrorange'] = "600",
+	['sightrangeday'] = "1500",
+	['sightrangenight'] = "1500",
 	['wanderrange'] = "250",
 	['primaryattribute'] = "Agility",
 	['strength'] = "0",
@@ -246,15 +548,55 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
-	['previewmodel'] = "preview.mdf",
 	['previewpos'] = "15 0 -115",
 	['previewangles'] = "39 0 0",
 	['previewscale'] = "0.95",
-	['storemodel'] = "preview.mdf",
+	['storepos'] = "0 0 -100",
+	['storeangles'] = "33 0 0",
+	['storescale'] = "1.3",
+	['rolesurvival'] = "3",
+	['rolecrowdcontrol'] = "4",
+	['rolephysicaldamage'] = "0",
+	['rolemagicdamage'] = "3",
+	['roleutility'] = "0",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Pincer",
+	['itembuild'] = "Bo",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 1,[4] = 3,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1000",
+	['corpsefadetime'] = "3000",
+	['preglobalscale'] = "1.25",
+	['preglobalscale'] = "1.25",
+	['preglobalscale'] = "1.25",
+	['preglobalscale'] = "1.45",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true"		,
 },
+
+--[[
+
+ _ _                     _         _ _
+( | )                   (_)       ( | )
+ V V ___ __ _ _ __  _ __ _  ___ ___V V
+    / __/ _` | '_ \| '__| |/ __/ _ \
+   | (_| (_| | |_) | |  | | (_|  __/  _
+    \___\__,_| .__/|_|  |_|\___\___| ( )
+             | |                     |/
+
+]]
+
 ["Hero_Caprice"] =  {
+	['name'] = "Hero_Caprice",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.9",
 	['modelscale'] = "1",
-	['effectscale'] = "1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -285,6 +627,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Caprice1",
+	['inventory1'] = "Ability_Caprice2",
+	['inventory2'] = "Ability_Caprice3",
+	['inventory3'] = "Ability_Caprice4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "250",
@@ -295,11 +649,11 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['attackrange'] = "500",
-	['attackstarteffect'] = "effects/attack_start.effect",
 	['attacktype'] = "ranged",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "effects/impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackdamagetype'] = "AttackDamage",
+	['combattype'] = "Hero",
+	['attackoffset'] = "15 75 60",
+	['attackprojectile'] = "Projectile_Caprice_Attack",
 	['aggrorange'] = "800",
 	['sightrangeday'] = "1500",
 	['sightrangenight'] = "1500",
@@ -311,11 +665,50 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
+	['previewpos'] = "25 0 -105",
+	['previewangles'] = "39 0 0",
+	['previewscale'] = "1.37",
+	['storepos'] = "0 0 -80",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.30",
+	['infoheight'] = "275",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Caprice",
+	['levelbuild'] = { [1] = 2,[2] = 1,[3] = 3,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1500",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['norender'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _               _           _ _
+( | )             | |         ( | )
+ V V ___ __ _ _ __| |_ ___ _ __V V
+    / __/ _` | '__| __/ _ \ '__|
+   | (_| (_| | |  | ||  __/ |     _
+    \___\__,_|_|   \__\___|_|    ( )
+                                 |/
+
+
+]]
+
 ["Hero_Carter"] =  {
+	['name'] = "Hero_Carter",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.3",
 	['modelscale'] = "1.15",
-	['effectscale'] = "1.075",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -346,6 +739,19 @@ self.Heros = {
 	['manaregen'] = { [1] = 3.25,[2] = 3.32,[3] = 3.39,[4] = 3.45,[5] = 3.52,[6] = 3.59,[7] = 3.65,[8] = 3.72,[9] = 3.79,[10] = 3.86,[11] = 3.92,[12] = 3.99,[13] = 4.06,[14] = 4.13,[15] = 4.19, },
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Carter1",
+	['inventory1'] = "Ability_Carter2",
+	['inventory2'] = "Ability_Carter3",
+	['inventory3'] = "Ability_Carter4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "200",
@@ -356,10 +762,10 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['tiltfactor'] = "0.0",
-	['attackstarteffect'] = "effects/attack_start.effect",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['tiltspeed'] = "90.0",
+	['attackoffset'] = "0 -15 160",
+	['attackprojectile'] = "Projectile_CarterAttack",
+	['attackrange'] = "500",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -370,11 +776,54 @@ self.Heros = {
 	['primaryattribute'] = "Intelligence",
 	['strength'] = "0",
 	['strengthperlevel'] = "0",
+	['agility'] = "0",
+	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "10 0 -100",
+	['previewangles'] = "15 -3 15",
+	['previewscale'] = "1.08",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.0",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Carter",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 1,[4] = 2,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 3,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1500",
+	['corpsefadetime'] = "4000",
+	['attackprojectile'] = "Projectile_Frost",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['previewpos'] = "42 0 0",
+	['previewangles'] = "0 0 30",
+	['previewscale'] = "1.0"		,
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _     _               _           _ _
+( | )   | |             | |         ( | )
+ V V ___| |__   ___  ___| |_ ___ _ __V V
+    / __| '_ \ / _ \/ __| __/ _ \ '__|
+   | (__| | | |  __/\__ \ ||  __/ |     _
+    \___|_| |_|\___||___/\__\___|_|    ( )
+                                       |/
+
+]]
+
 ["Hero_Chester"] =  {
+	['name'] = "Hero_Chester",
+	['team'] = "wip",
+	['selectedsound'] = "",
+	['showinpractice'] = "true",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.5",
 	['modelscale'] = "1.2",
-	['effectscale'] = "1.05",
 	['boundsheight'] = "64",
 	['boundsradius'] = "24",
 	['selectionradius'] = "36",
@@ -403,6 +852,19 @@ self.Heros = {
 	['manaregen'] = { [1] = 3.25,[2] = 3.32,[3] = 3.39,[4] = 3.45,[5] = 3.52,[6] = 3.59,[7] = 3.65,[8] = 3.72,[9] = 3.79,[10] = 3.86,[11] = 3.92,[12] = 3.99,[13] = 4.06,[14] = 4.13,[15] = 4.19, },
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Chester1",
+	['inventory1'] = "Ability_Chester2",
+	['inventory2'] = "Ability_Chester3",
+	['inventory3'] = "Ability_Chester4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "300",
@@ -413,11 +875,11 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['attackrange'] = "500",
-	['attackstarteffect'] = "effects/attack_start.effect",
+	['attacktype'] = "ranged",
+	['attackdamagetype'] = "AttackDamage",
+	['combattype'] = "Hero",
+	['attackoffset'] = "0 130 190",
 	['attackprojectile'] = "Projectile_Chester_Attack",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
 	['aggrorange'] = "800",
 	['sightrangeday'] = "1500",
 	['sightrangenight'] = "1500",
@@ -428,12 +890,47 @@ self.Heros = {
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "25 0 -125",
+	['previewangles'] = "33 0 0",
+	['previewscale'] = "1.2",
+	['storepos'] = "0 0 -80",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.35",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Chester",
+	['llevelbuild'] = { [1] = 1,[2] = 2,[3] = 1,[4] = 3,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "2000",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
 },
+
+--[[
+
+ _ _     _                 _                    _ _
+( | )   | |               | |                  ( | )
+ V V ___| | __ _ _   _  __| | ___  ___ ___  __ _V V
+    / __| |/ _` | | | |/ _` |/ _ \/ __/ __|/ _` |
+   | (__| | (_| | |_| | (_| |  __/\__ \__ \ (_| |  _
+    \___|_|\__,_|\__,_|\__,_|\___||___/___/\__,_| ( )
+                                                  |/
+
+]]
+
 ["Hero_Claudessa"] =  {
-	['wellplayedannouncement'] = "sounds/voice/vo_ping_wellplayed.wav",
+	['name'] = "Hero_Claudessa",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.9",
 	['modelscale'] = "1.1",
-	['effectscale'] = "1.075",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -462,6 +959,19 @@ self.Heros = {
 	['inventory0'] = "Ability_Claudessa1",
 	['inventory1'] = "Ability_Claudessa2",
 	['inventory2'] = "Ability_Claudessa3",
+	['inventory3'] = "Ability_Claudessa4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
+	['powerperlevel'] = "0",
+	['attackduration'] = "400",
+	['attackactiontime'] = "350",
+	['attackcooldown'] = "1100",
 	['attackdamagemin'] = { [1] = 63,[2] = 65.93,[3] = 68.86,[4] = 71.79,[5] = 74.71,[6] = 77.64,[7] = 80.57,[8] = 83.5,[9] = 86.43,[10] = 89.36,[11] = 92.29,[12] = 95.21,[13] = 98.14,[14] = 101.07,[15] = 104, },
 	['attackdamageminperlevel'] = "0",
 	['attackdamagemax'] = { [1] = 63,[2] = 65.93,[3] = 68.86,[4] = 71.79,[5] = 74.71,[6] = 77.64,[7] = 80.57,[8] = 83.5,[9] = 86.43,[10] = 89.36,[11] = 92.29,[12] = 95.21,[13] = 98.14,[14] = 101.07,[15] = 104, },
@@ -470,10 +980,9 @@ self.Heros = {
 	['attackoffset'] = "0 30 100",
 	['attackprojectile'] = "",
 	['attackrange'] = "180",
-	['attackstarteffect'] = "effects/attack_start.effect",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "effects/impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attacktype'] = "melee",
+	['attackdamagetype'] = "AttackDamage",
+	['combattype'] = "Hero",
 	['aggrorange'] = "600",
 	['sightrangeday'] = "1500",
 	['sightrangenight'] = "1500",
@@ -485,14 +994,53 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
-	['previewmodel'] = "preview.mdf",
 	['previewpos'] = "20 0 -110",
 	['previewangles'] = "39 0 0",
+	['previewscale'] = "1.51",
+	['storepos'] = "0 0 -100",
+	['storeangles'] = "33 0 0",
+	['storescale'] = "1.3",
+	['rolesurvival'] = "4",
+	['rolecrowdcontrol'] = "0",
+	['rolephysicaldamage'] = "0",
+	['rolemagicdamage'] = "4",
+	['roleutility'] = "4",
+	['infoheight'] = "250",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Topps",
+	['itembuild'] = "Claudessa",
+	['levelbuild'] = { [1] = 1,[2] = 3,[3] = 2,[4] = 2,[5] = 2,[6] = 4,[7] = 2,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 1,[13] = 1,[14] = 1,[15] = 4, },
+	['corpsetime'] = "1000",
+	['corpsefadetime'] = "3000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _  __     _   _                _                  _ _
+( | )/ _|   | | | |              | |                ( | )
+ V V| |_ ___| |_| |_ ___ _ __ ___| |_ ___  _ __   ___V V
+    |  _/ _ \ __| __/ _ \ '__/ __| __/ _ \| '_ \ / _ \
+    | ||  __/ |_| ||  __/ |  \__ \ || (_) | | | |  __/  _
+    |_| \___|\__|\__\___|_|  |___/\__\___/|_| |_|\___| ( )
+                                                       |/
+
+
+]]
+
 ["Hero_Fetterstone"] =  {
+	['name'] = "Hero_Fetterstone",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.75",
 	['modelscale'] = ".925",
-	['effectscale'] = ".925",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -522,6 +1070,19 @@ self.Heros = {
 	['manaregen'] = { [1] = 3.52,[2] = 3.59,[3] = 3.65,[4] = 3.73,[5] = 3.81,[6] = 3.88,[7] = 3.95,[8] = 4.02,[9] = 4.10,[10] = 4.17,[11] = 4.24,[12] = 4.31,[13] = 4.39,[14] = 4.46,[15] = 4.53, },
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Fetterstone1",
+	['inventory1'] = "Ability_Fetterstone2",
+	['inventory2'] = "Ability_Fetterstone3",
+	['inventory3'] = "Ability_Fetterstone4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "200",
@@ -532,11 +1093,11 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['attackrange'] = "550",
-	['attackactioneffect'] = "projectile/effects/attack_action.effect",
+	['attacktype'] = "ranged",
+	['attackdamagetype'] = "AttackDamage",
+	['combattype'] = "Hero",
 	['attackoffset'] = "0 200 90",
 	['attackprojectile'] = "Projectile_Fetterstone_Attack",
-	['attackimpacteffect'] = "",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
 	['aggrorange'] = "800",
 	['sightrangeday'] = "1500",
 	['sightrangenight'] = "1500",
@@ -547,11 +1108,55 @@ self.Heros = {
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "17 0 -115",
+	['previewangles'] = "35 0 0",
+	['previewscale'] = "1.17",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 15",
+	['storescale'] = "1.55",
+	['infoheight'] = "240",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Razer",
+	['itembuild'] = "Fetterstone",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1000",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['attackprojectile'] = "Projectile_Fetterstone_Attack_Ult",
+	['attackanim'] = "ability_4_atk",
+	['attackoffset'] = "0 250 90",
+	['walkanim'] = "walk_1_ult",
+	['idleanim'] = "idle_ult",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _            _                    _ _
+( | )          | |                  ( | )
+ V V __ _  ___ | | _____  _ __   __ _V V
+    / _` |/ _ \| |/ / _ \| '_ \ / _` |
+   | (_| | (_) |   < (_) | | | | (_| |  _
+    \__, |\___/|_|\_\___/|_| |_|\__, | ( )
+     __/ |                       __/ | |/
+    |___/                       |___/
+
+]]
+
 ["Hero_GoKong"] =  {
+	['name'] = "Hero_GoKong",
+	['team'] = "final",
+	['skin'] = "",
+	['showinpractice'] = "true",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "2.2",
 	['modelscale'] = ".9",
-	['effectscale'] = "1.05",
 	['boundsheight'] = "64",
 	['boundsradius'] = "24",
 	['selectionradius'] = "36",
@@ -582,6 +1187,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_GoKong1",
+	['inventory1'] = "Ability_GoKong2",
+	['inventory2'] = "Ability_GoKong3",
+	['inventory3'] = "Ability_GoKong4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "350",
@@ -594,7 +1211,6 @@ self.Heros = {
 	['attackoffset'] = "0 30 100",
 	['attackprojectile'] = "",
 	['attackrange'] = "180",
-	['deatheffect'] = "effects/death.effect",
 	['attacktype'] = "melee",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -608,10 +1224,53 @@ self.Heros = {
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "0 0 -115",
+	['previewangles'] = "39 0 0",
+	['previewscale'] = "1.3",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.62",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Razer",
+	['itembuild'] = "Gokong",
+	['levelbuild'] = { [1] = 2,[2] = 1,[3] = 3,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 2,[13] = 2,[14] = 2,[15] = 4, },
+	['corpsetime'] = "2250",
+	['corpsefadetime'] = "4000",
+	['attackanim'] = "ability_2_ranged",
+	['attackactiontime'] = "100",
+	['attackrange'] = "200",
+	['isselectable'] = "false",
+	['drawonmap'] = "false",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _ _           _     _ _
+( | ) |         | |   ( | )
+ V V| |__   __ _| | ___V V
+    | '_ \ / _` | |/ _ \
+    | | | | (_| | |  __/  _
+    |_| |_|\__,_|_|\___| ( )
+                         |/
+
+]]
+
 ["Hero_Hale"] =  {
+	['name'] = "Hero_Hale",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.5",
 	['modelscale'] = "1.2",
-	['effectscale'] = "1.075",
 	['boundsheight'] = "64",
 	['boundsradius'] = "24",
 	['selectionradius'] = "36",
@@ -642,6 +1301,19 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_Hale1",
+	['inventory1'] = "Ability_Hale2",
+	['inventory2'] = "Ability_Hale3",
+	['inventory3'] = "Ability_Hale4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
+	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "350",
 	['attackcooldown'] = "1100",
@@ -653,7 +1325,7 @@ self.Heros = {
 	['attackoffset'] = "0 30 100",
 	['attackprojectile'] = "",
 	['attackrange'] = "180",
-	['attackstarteffect'] = "effects/attack.effect",
+	['attacktype'] = "melee",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
 	['aggrorange'] = "600",
@@ -667,9 +1339,50 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
+	['previewpos'] = "40 0 -115",
+	['previewangles'] = "39 0 0",
+	['previewscale'] = "1.3",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.62",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Bounder",
+	['itembuild'] = "Hale",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 3,[5] = 3,[6] = 4,[7] = 3,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 1,[13] = 1,[14] = 1,[15] = 4, },
+	['corpsetime'] = "2250",
+	['corpsefadetime'] = "4000",
+	['attackanim'] = "ability_2_ranged",
+	['attackactiontime'] = "100",
+	['attackrange'] = "200",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _ _                                          _ _
+( | ) |                                        ( | )
+ V V| |__   __ _ _ __ _ __ _____      _____ _ __V V
+    | '_ \ / _` | '__| '__/ _ \ \ /\ / / _ \ '__|
+    | | | | (_| | |  | | | (_) \ V  V /  __/ |     _
+    |_| |_|\__,_|_|  |_|  \___/ \_/\_/ \___|_|    ( )
+                                                  |/
+
+
+]]
+
 ["Hero_Harrower"] =  {
-	['effectscale'] = "1.05",
+	['name'] = "Hero_Harrower",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.4",
+	['modelscale'] = "1.1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "52",
@@ -700,6 +1413,19 @@ self.Heros = {
 	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['inventory0'] = "Ability_Harrower1",
 	['inventory1'] = "Ability_Harrower2",
+	['inventory2'] = "Ability_Harrower3",
+	['inventory3'] = "Ability_Harrower4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
+	['powerperlevel'] = "0",
+	['attackduration'] = "500",
+	['attackactiontime'] = "250",
 	['attackcooldown'] = "1100",
 	['attackdamagemin'] = { [1] = 54,[2] = 56.49,[3] = 58.97,[4] = 61.46,[5] = 63.94,[6] = 66.43,[7] = 68.91,[8] = 71.4,[9] = 73.89,[10] = 76.37,[11] = 78.86,[12] = 81.34,[13] = 83.83,[14] = 86.31,[15] = 88.8, },
 	['attackdamageminperlevel'] = "0",
@@ -709,9 +1435,9 @@ self.Heros = {
 	['attackoffset'] = "35 170 115",
 	['attackprojectile'] = "Projectile_HarrowerAttack",
 	['attackrange'] = "500",
-	['attackstarteffect'] = "effects/attack_start_hunter.effect",
-	['attackactioneffect'] = "effects/attack_hunter.effect",
-	['attackimpacteffect'] = "",
+	['attacktype'] = "ranged",
+	['attackdamagetype'] = "AttackDamage",
+	['combattype'] = "Hero",
 	['aggrorange'] = "600",
 	['sightrangeday'] = "1500",
 	['sightrangenight'] = "1500",
@@ -723,15 +1449,62 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
-	['previewmodel'] = "preview.mdf",
 	['previewpos'] = "15 0 -110",
+	['previewangles'] = "39 0 0",
+	['previewscale'] = "1.11",
+	['storepos'] = "0 0 -100",
+	['storeangles'] = "33 0 0",
+	['storescale'] = "1.3",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Razer",
+	['itembuild'] = "Harrower",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 2,[13] = 2,[14] = 2,[15] = 4, },
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['preglobalscale'] = "1.4",
+	['modelscale'] = "1.25",
+	['attacknumanims'] = "3",
+	['attackprojectile'] = "",
+	['attackrange'] = "160",
+	['attacktype'] = "melee",
+	['attackanim'] = "attack_%",
+	['distancetocleartargetsfrombrain'] = "400",
+	['creepkillannouncement'] = "",
+	['herolevelultannouncement'] = "",
+	['deathannouncement'] = "",
+	['respawnannouncement'] = "",
+	['itemacquireannouncement'] = "",
+	['itempurchaseannouncement'] = "",
+	['abilityflavorannouncement'] = "",
+	['defaultbehavior'] = "hold",
 },
+
+--[[
+
+ _ _ _       _    _ _
+( | |_)     | |  ( | )
+ V V _  __ _| |__ V V
+    | |/ _` | '_ \
+    | | (_| | | | |  _
+    |_|\__,_|_| |_| ( )
+                    |/
+
+
+]]
+
 ["Hero_Iah"] =  {
+	['name'] = "Hero_Iah",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['revealrange'] = "700",
 	['revealtype'] = "hero",
 	['preglobalscale'] = "1.7",
 	['modelscale'] = "1.125",
-	['effectscale'] = "1.05",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "54",
@@ -759,6 +1532,20 @@ self.Heros = {
 	['maxmanaperlevel'] = "10",
 	['manaregen'] = { [1] = 3.52,[2] = 3.59,[3] = 3.65,[4] = 3.73,[5] = 3.81,[6] = 3.88,[7] = 3.95,[8] = 4.02,[9] = 4.10,[10] = 4.17,[11] = 4.24,[12] = 4.31,[13] = 4.39,[14] = 4.46,[15] = 4.53, },
 	['manaproportionregen'] = "0.0",
+	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Iah1",
+	['inventory1'] = "Ability_Iah2",
+	['inventory2'] = "Ability_Iah3",
+	['inventory3'] = "Ability_Iah4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "300",
@@ -769,8 +1556,8 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['attackoffset'] = "20 225 75",
-	['attackimpacteffect'] = "effects/projectile/effects/projectile_impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackprojectile'] = "Projectile_IahAttack",
+	['attackrange'] = "500",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -783,11 +1570,52 @@ self.Heros = {
 	['strengthperlevel'] = "0",
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "18 0 -120",
+	['previewangles'] = "42 0 0",
+	['previewscale'] = "1.46",
+	['storepos'] = "0 0 -100",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.1",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Iah",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1000",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _ _ _           _         _ _
+( | |_|_)         | |       ( | )
+ V V _ _ _ __  ___| |__   ___V V
+    | | | '_ \/ __| '_ \ / _ \
+    | | | | | \__ \ | | |  __/  _
+    | |_|_| |_|___/_| |_|\___| ( )
+   _/ |                        |/
+  |__/
+
+]]
+
 ["Hero_JinShe"] =  {
+	['name'] = "Hero_JinShe",
+	['team'] = "final",
+	['skin'] = "",
+	['showinpractice'] = "true",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.95",
 	['modelscale'] = "1",
-	['effectscale'] = "1.1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -816,6 +1644,19 @@ self.Heros = {
 	['maxmanaperlevel'] = "12",
 	['manaregen'] = { [1] = 2.16,[2] = 2.23,[3] = 2.3,[4] = 2.36,[5] = 2.43,[6] = 2.5,[7] = 2.57,[8] = 2.63,[9] = 2.7,[10] = 2.77,[11] = 2.84,[12] = 2.9,[13] = 2.97,[14] = 3.04,[15] = 3.11, },
 	['manaproportionregen'] = "0.0",
+	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_JinShe1",
+	['inventory1'] = "Ability_JinShe2",
+	['inventory2'] = "Ability_JinShe3",
+	['inventory3'] = "Ability_JinShe4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
 	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
@@ -826,9 +1667,9 @@ self.Heros = {
 	['attackdamagemax'] = { [1] = 63,[2] = 65.93,[3] = 68.86,[4] = 71.79,[5] = 74.71,[6] = 77.64,[7] = 80.57,[8] = 83.5,[9] = 86.43,[10] = 89.36,[11] = 92.29,[12] = 95.21,[13] = 98.14,[14] = 101.07,[15] = 104, },
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "effects/impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackoffset'] = "35 100 210",
+	['attackprojectile'] = "",
+	['attackrange'] = "250",
 	['attacktype'] = "melee",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -840,11 +1681,50 @@ self.Heros = {
 	['strength'] = "0",
 	['strengthperlevel'] = "0",
 	['agility'] = "0",
+	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "5 30 -80",
+	['previewangles'] = "30 13 -20",
+	['previewscale'] = "1.4",
+	['storepos'] = "20 0 -80",
+	['storeangles'] = "20 0 0",
+	['storescale'] = "1.22",
+	['infoheight'] = "250",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Pincer",
+	['itembuild'] = "Jin She",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 2,[4] = 3,[5] = 2,[6] = 4,[7] = 2,[8] = 1,[9] = 1,[10] = 1,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "2000",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
 },
+
+--[[
+
+ _ _ _           _          _   _           _          _ _
+( | ) |         | |        | | (_)         | |        ( | )
+ V V| | __ _  __| |_   _   | |_ _ _ __   __| | ___ _ __V V
+    | |/ _` |/ _` | | | |  | __| | '_ \ / _` |/ _ \ '__|
+    | | (_| | (_| | |_| |  | |_| | | | | (_| |  __/ |     _
+    |_|\__,_|\__,_|\__, |   \__|_|_| |_|\__,_|\___|_|    ( )
+                    __/ |_____                           |/
+                   |___/______|
+
+]]
+
 ["Hero_Ladytinder"] =  {
+	['name'] = "Hero_Ladytinder",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.5",
 	['modelscale'] = "1.075",
-	['effectscale'] = "1.075",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -875,6 +1755,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Ladytinder1",
+	['inventory1'] = "Ability_Ladytinder2",
+	['inventory2'] = "Ability_Ladytinder3",
+	['inventory3'] = "Ability_Ladytinder4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "350",
@@ -885,8 +1777,8 @@ self.Heros = {
 	['attackoffset'] = "0 100 75",
 	['attackprojectile'] = "Projectile_Ladytinder_Attack",
 	['attackrange'] = "500",
-	['attackstarteffect'] = "effects/attack_start.effect",
-	['attackactioneffect'] = "effects/attack_action.effect",
+	['attacktype'] = "ranged",
+	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
 	['aggrorange'] = "600",
 	['sightrangeday'] = "1500",
@@ -899,11 +1791,53 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
+	['previewpos'] = "20 0 -115",
+	['previewangles'] = "33 0 0",
+	['previewscale'] = "1.165",
+	['storepos'] = "0 0 -80",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.35",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Tortus",
+	['shadowsize'] = "110",
+	['shadowwidth'] = "110",
+	['shadowheight'] = "110",
+	['itembuild'] = "Tinder",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 2,[5] = 2,[6] = 4,[7] = 2,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 1,[13] = 1,[14] = 1,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['previewpos'] = "25 0 -100",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _                _           _      _ _
+( | )              | |         | |    ( | )
+ V V_ __ ___   __ _| | __ _  __| |_   _V V
+   | '_ ` _ \ / _` | |/ _` |/ _` | | | |
+   | | | | | | (_| | | (_| | (_| | |_| |  _
+   |_| |_| |_|\__,_|_|\__,_|\__,_|\__, | ( )
+                                   __/ | |/
+                                  |___/
+
+]]
+
 ["Hero_Malady"] =  {
+	['name'] = "Hero_Malady",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.5",
 	['modelscale'] = "1.16",
-	['effectscale'] = "1.05",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -933,6 +1867,20 @@ self.Heros = {
 	['maxmanaperlevel'] = "10",
 	['manaregen'] = { [1] = 3.25,[2] = 3.32,[3] = 3.39,[4] = 3.45,[5] = 3.52,[6] = 3.59,[7] = 3.65,[8] = 3.72,[9] = 3.79,[10] = 3.86,[11] = 3.92,[12] = 3.99,[13] = 4.06,[14] = 4.13,[15] = 4.19, },
 	['manaproportionregen'] = "0.0",
+	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Malady1",
+	['inventory1'] = "Ability_Malady2",
+	['inventory2'] = "Ability_Malady3",
+	['inventory3'] = "Ability_Malady4",
+	['inventory4'] = "",
+	['inventory5'] = "Ability_Malady4a",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "300",
@@ -955,11 +1903,51 @@ self.Heros = {
 	['strengthperlevel'] = "0",
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "20 0 -140",
+	['previewangles'] = "45 0 0",
+	['previewscale'] = "1.26",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.35",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Malady",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 1,[4] = 3,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _          _                           _ _
+( | )        (_)                         ( | )
+ V V_ __ ___  _ _ __   ___ _ ____   ____ _V V
+   | '_ ` _ \| | '_ \ / _ \ '__\ \ / / _` |
+   | | | | | | | | | |  __/ |   \ V / (_| |  _
+   |_| |_| |_|_|_| |_|\___|_|    \_/ \__,_| ( )
+                                            |/
+
+
+]]
+
 ["Hero_Minerva"] =  {
+	['name'] = "Hero_Minerva",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.6",
 	['modelscale'] = "1.1",
-	['effectscale'] = "1.04",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -990,6 +1978,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_Minerva1",
+	['inventory1'] = "Ability_Minerva2",
+	['inventory2'] = "Ability_Minerva3",
+	['inventory3'] = "Ability_Minerva4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "350",
@@ -1016,13 +2016,54 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
+	['previewpos'] = "28 0 -110",
+	['previewangles'] = "45 0 0",
+	['previewscale'] = "1.27",
+	['storepos'] = "20 0 -80",
+	['storeangles'] = "20 0 0",
+	['storescale'] = "1.22",
+	['infoheight'] = "250",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Topps",
+	['itembuild'] = "Minerva",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 2,[5] = 2,[6] = 4,[7] = 2,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 1,[13] = 1,[14] = 1,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _                    _     _ _
+( | )                  (_)   ( | )
+ V V_ __ ___   _____  ___  ___V V
+   | '_ ` _ \ / _ \ \/ / |/ _ \
+   | | | | | | (_) >  <| |  __/  _
+   |_| |_| |_|\___/_/\_\_|\___| ( )
+                                |/
+
+]]
+
 ["Hero_Moxie"] =  {
+	['name'] = "Hero_Moxie",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['creepkillannouncement'] = "",
+	['herolevelultannouncement'] = "",
+	['itempurchaseannouncement'] = "",
+	['abilityflavorannouncement'] = "",
 	['revealrange'] = "700",
 	['revealtype'] = "hero",
 	['preglobalscale'] = "1.175",
 	['modelscale'] = "1",
-	['effectscale'] = "1.1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "54",
@@ -1050,6 +2091,20 @@ self.Heros = {
 	['maxmanaperlevel'] = "10",
 	['manaregen'] = { [1] = 3.52,[2] = 3.59,[3] = 3.65,[4] = 3.73,[5] = 3.81,[6] = 3.88,[7] = 3.95,[8] = 4.02,[9] = 4.10,[10] = 4.17,[11] = 4.24,[12] = 4.31,[13] = 4.39,[14] = 4.46,[15] = 4.53, },
 	['manaproportionregen'] = "0.0",
+	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Moxie1",
+	['inventory1'] = "Ability_Moxie2",
+	['inventory2'] = "Ability_Moxie3",
+	['inventory3'] = "Ability_Moxie4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "300",
@@ -1060,8 +2115,8 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['attackoffset'] = "-22 70 60",
-	['attackimpacteffect'] = "effects/projectile/effects/projectile_impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackprojectile'] = "Projectile_MoxieAttack",
+	['attackrange'] = "550",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -1074,11 +2129,52 @@ self.Heros = {
 	['strengthperlevel'] = "0",
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "18 0 -120",
+	['previewangles'] = "42 0 0",
+	['previewscale'] = "0.85",
+	['storepos'] = "0 0 -100",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.1",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Moxie",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 2,[5] = 2,[6] = 4,[7] = 2,[8] = 1,[9] = 1,[10] = 1,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _      _ _         _       _ _ _
+( | )    (_) |       | |     (_| | )
+ V V_ __  _| | _____ | | __ _ _ V V
+   | '_ \| | |/ / _ \| |/ _` | |
+   | | | | |   < (_) | | (_| | |   _
+   |_| |_|_|_|\_\___/|_|\__,_|_|  ( )
+                                  |/
+
+
+]]
+
 ["Hero_Nikolai"] =  {
+	['name'] = "Hero_Nikolai",
+	['team'] = "final",
+	['skin'] = "",
+	['showinpractice'] = "true",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.2",
 	['modelscale'] = "1.0",
-	['effectscale'] = "1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "52",
@@ -1109,6 +2205,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_Nikolai1",
+	['inventory1'] = "Ability_Nikolai2",
+	['inventory2'] = "Ability_Nikolai3",
+	['inventory3'] = "Ability_Nikolai4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "350",
@@ -1135,9 +2243,45 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
+	['previewpos'] = "10 0 -110",
+	['previewangles'] = "35 0 0",
+	['previewscale'] = "1",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.62",
+	['infoheight'] = "275",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Topps",
+	['itembuild'] = "Nikolai",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 2,[5] = 2,[6] = 4,[7] = 2,[8] = 1,[9] = 1,[10] = 1,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "2000",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
 },
+
+--[[
+
+ _ _               _ _
+( | )             ( | )
+ V V_ __ __ _ _   _V V
+   | '__/ _` | | | |
+   | | | (_| | |_| |  _
+   |_|  \__,_|\__, | ( )
+               __/ | |/
+              |___/
+
+]]
+
 ["Hero_Ray"] =  {
-	['effectscale'] = "1.1",
+	['name'] = "Hero_Ray",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.4",
+	['modelscale'] = "1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -1169,6 +2313,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Ray1",
+	['inventory1'] = "Ability_Ray2",
+	['inventory2'] = "Ability_Ray3",
+	['inventory3'] = "Ability_Ray4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "300",
 	['attackactiontime'] = "300",
@@ -1181,8 +2337,8 @@ self.Heros = {
 	['tiltfactor'] = "0.0",
 	['tiltspeed'] = "90.0",
 	['attackoffset'] = "50 105 148",
-	['attackimpacteffect'] = "",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackprojectile'] = "Projectile_Ray_Attack",
+	['attackrange'] = "500",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -1195,11 +2351,50 @@ self.Heros = {
 	['strengthperlevel'] = "0",
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "15 0 -110",
+	['previewangles'] = "30 0 0",
+	['previewscale'] = "1.0",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.45",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Ray",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 1,[4] = 3,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['attackprojectile'] = "Projectile_Frost",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _                _    _ _
+( | )              | |  ( | )
+ V V_ __ ___   ___ | | __V V
+   | '__/ _ \ / _ \| |/ /
+   | | | (_) | (_) |   <    _
+   |_|  \___/ \___/|_|\_\  ( )
+                           |/
+
+]]
+
 ["Hero_Rook"] =  {
+	['name'] = "Hero_Rook",
+	['team'] = "final",
+	['skin'] = "",
+	['showinpractice'] = "true",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.6",
 	['modelscale'] = "1.0",
-	['effectscale'] = "1.05",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -1229,6 +2424,20 @@ self.Heros = {
 	['maxmanaperlevel'] = "10",
 	['manaregen'] = { [1] = 3.25,[2] = 3.32,[3] = 3.39,[4] = 3.45,[5] = 3.52,[6] = 3.59,[7] = 3.65,[8] = 3.72,[9] = 3.79,[10] = 3.86,[11] = 3.92,[12] = 3.99,[13] = 4.06,[14] = 4.13,[15] = 4.19, },
 	['manaproportionregen'] = "0.0",
+	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Rook1",
+	['inventory1'] = "Ability_Rook2",
+	['inventory2'] = "Ability_Rook3",
+	['inventory3'] = "Ability_Rook4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "200",
@@ -1238,11 +2447,11 @@ self.Heros = {
 	['attackdamagemax'] = { [1] = 54,[2] = 56.49,[3] = 58.97,[4] = 61.46,[5] = 63.94,[6] = 66.43,[7] = 68.91,[8] = 71.4,[9] = 73.89,[10] = 76.37,[11] = 78.86,[12] = 81.34,[13] = 83.83,[14] = 86.31,[15] = 88.8, },
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
+	['tiltfactor'] = "0.0",
+	['tiltspeed'] = "90.0",
+	['attackoffset'] = "0 50 80",
+	['attackprojectile'] = "Projectile_Rook_Attack",
 	['attackrange'] = "550",
-	['attackstarteffect'] = "effects/attack.effect",
-	['attackactioneffect'] = "",
-	['attackimpacteffect'] = "projectile/effects/impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -1252,10 +2461,55 @@ self.Heros = {
 	['wanderrange'] = "250",
 	['primaryattribute'] = "Intelligence",
 	['strength'] = "0",
+	['strengthperlevel'] = "0",
+	['agility'] = "0",
+	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "20 0 -80",
+	['previewangles'] = "20 0 0",
+	['previewscale'] = "1.15",
+	['storepos'] = "0 0 -120",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.15",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Razer",
+	['itembuild'] = "Rook",
+	['levelbuild'] = { [1] = 1,[2] = 3,[3] = 2,[4] = 3,[5] = 3,[6] = 4,[7] = 3,[8] = 1,[9] = 1,[10] = 1,[11] = 4,[12] = 2,[13] = 2,[14] = 2,[15] = 4, },
+	['corpsetime'] = "1500",
+	['corpsefadetime'] = "4000",
+	['attackprojectile'] = "Projectile_Frost",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "aggro",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true"		,
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _    _                 _    _ _
+( | )  | |               | |  ( | )
+ V V___| |__   __ _ _ __ | | __V V
+   / __| '_ \ / _` | '_ \| |/ /
+   \__ \ | | | (_| | | | |   <    _
+   |___/_| |_|\__,_|_| |_|_|\_\  ( )
+                                 |/
+
+]]
+
 ["Hero_Shank"] =  {
+	['name'] = "Hero_Shank",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.2",
 	['modelscale'] = "1",
-	['effectscale'] = "1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "52",
@@ -1285,6 +2539,20 @@ self.Heros = {
 	['maxmanaperlevel'] = "10",
 	['manaregen'] = { [1] = 2.9,[2] = 2.96,[3] = 3.02,[4] = 3.08,[5] = 3.14,[6] = 3.2,[7] = 3.26,[8] = 3.32,[9] = 3.38,[10] = 3.44,[11] = 3.5,[12] = 3.56,[13] = 3.62,[14] = 3.68,[15] = 3.74, },
 	['manaproportionregen'] = "0.0",
+	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 20,[2] = 22.5,[3] = 25,[4] = 27.5,[5] = 30,[6] = 32.5,[7] = 35,[8] = 37.5,[9] = 40,[10] = 42.5,[11] = 45,[12] = 47.5,[13] = 50,[14] = 52.5,[15] = 55, },
+	['inventory0'] = "Ability_Shank1",
+	['inventory1'] = "Ability_Shank2",
+	['inventory2'] = "Ability_Shank3",
+	['inventory3'] = "Ability_Shank4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "400",
 	['attackactiontime'] = "350",
@@ -1295,8 +2563,8 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "3",
 	['attackoffset'] = "0 30 100",
-	['attackimpacteffect'] = "effects/impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackprojectile'] = "",
+	['attackrange'] = "180",
 	['attacktype'] = "melee",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -1309,9 +2577,48 @@ self.Heros = {
 	['strengthperlevel'] = "0",
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "35 17 -75",
+	['previewangles'] = "30 0 0",
+	['previewscale'] = ".866",
+	['storepos'] = "0 0 -100",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.0",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Bounder",
+	['itembuild'] = "Shank",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 2,[13] = 2,[14] = 2,[15] = 4, },
+	['corpsetime'] = "2000",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _ _        _      _     _ _
+( | ) |      (_)    (_)   ( | )
+ V V| |_ _ __ ___  ___  ___V V
+    | __| '__| \ \/ / |/ _ \
+    | |_| |  | |>  <| |  __/  _
+     \__|_|  |_/_/\_\_|\___| ( )
+                             |/
+
+
+]]
+
 ["Hero_Trixie"] =  {
-	['effectscale'] = "1.025",
+	['name'] = "Hero_Trixie",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.9",
+	['modelscale'] = "1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -1343,6 +2650,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Trixie1",
+	['inventory1'] = "Ability_Trixie2",
+	['inventory2'] = "Ability_Trixie3",
+	['inventory3'] = "Ability_Trixie4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "300",
 	['attackactiontime'] = "300",
@@ -1355,8 +2674,8 @@ self.Heros = {
 	['tiltfactor'] = "0.0",
 	['tiltspeed'] = "90.0",
 	['attackoffset'] = "18 185 150",
-	['attackimpacteffect'] = "",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackprojectile'] = "Projectile_Trixie_Attack",
+	['attackrange'] = "500",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -1369,10 +2688,53 @@ self.Heros = {
 	['strengthperlevel'] = "0",
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
+	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "25 75 -100",
+	['previewangles'] = "40 0 0",
+	['previewscale'] = "1.35",
+	['storepos'] = "0 0 -20",
+	['storeangles'] = "0 0 0",
+	['storescale'] = "1.45",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Trixie",
+	['levelbuild'] = { [1] = 1,[2] = 3,[3] = 2,[4] = 3,[5] = 3,[6] = 4,[7] = 3,[8] = 1,[9] = 1,[10] = 1,[11] = 4,[12] = 2,[13] = 2,[14] = 2,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['attackprojectile'] = "Projectile_Frost",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['canrotate'] = "false",
+	['walkanim'] = "walk_channel_1",
+	['altavatar'] = "true",
+	['preglobalscale'] = "2.1",
+	['previewscale'] = "1.5",
+	['previewpos'] = "25 75 -110",
 },
+
+--[[
+
+ _ _                          _ _ _ _            _ _
+( | )                        (_) | (_)          ( | )
+ V V__   _____ _ __ _ __ ___  _| | |_  ___  _ __ V V
+    \ \ / / _ \ '__| '_ ` _ \| | | | |/ _ \| '_ \
+     \ V /  __/ |  | | | | | | | | | | (_) | | | |  _
+      \_/ \___|_|  |_| |_| |_|_|_|_|_|\___/|_| |_| ( )
+                                                   |/
+
+]]
+
 ["Hero_Vermillion"] =  {
+	['name'] = "Hero_Vermillion",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
+	['preglobalscale'] = "1.44",
 	['modelscale'] = "1.0",
-	['effectscale'] = "1.1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -1403,6 +2765,19 @@ self.Heros = {
 	['manaregen'] = { [1] = 2.9,[2] = 2.96,[3] = 3.02,[4] = 3.08,[5] = 3.14,[6] = 3.2,[7] = 3.26,[8] = 3.32,[9] = 3.38,[10] = 3.44,[11] = 3.5,[12] = 3.56,[13] = 3.62,[14] = 3.68,[15] = 3.74, },
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Vermillion1",
+	['inventory1'] = "Ability_Vermillion2",
+	['inventory2'] = "Ability_Vermillion3",
+	['inventory3'] = "Ability_Vermillion4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "170",
@@ -1413,11 +2788,11 @@ self.Heros = {
 	['attackdamagemaxperlevel'] = "0",
 	['attacknumanims'] = "2",
 	['attackrange'] = "500",
-	['attackstarteffect'] = "effects/attack_start.effect",
+	['attacktype'] = "ranged",
+	['attackdamagetype'] = "AttackDamage",
+	['combattype'] = "Hero",
+	['attackoffset'] = "10 185 125",
 	['attackprojectile'] = "Projectile_VermillionAttack_Alt2",
-	['attackactioneffect'] = "projectile/effects/attack_action.effect",
-	['attackimpacteffect'] = "projectile/impact.effect",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
 	['aggrorange'] = "800",
 	['sightrangeday'] = "1500",
 	['sightrangenight'] = "1500",
@@ -1428,11 +2803,49 @@ self.Heros = {
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "15 0 -120",
+	['previewangles'] = "40 0 0",
+	['previewscale'] = "1.04",
+	['storepos'] = "0 0 -60",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.0",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Bounder",
+	['itembuild'] = "Vermillion",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 3,[5] = 3,[6] = 4,[7] = 3,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 1,[13] = 1,[14] = 1,[15] = 4, },
+	['corpsetime'] = "1300",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _                _ _
+( | )              ( | )
+ V V__   _______  __V V
+    \ \ / / _ \ \/ /
+     \ V /  __/>  <    _
+      \_/ \___/_/\_\  ( )
+                      |/
+
+]]
+
 ["Hero_Vex"] =  {
+	['name'] = "Hero_Vex",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.4",
 	['modelscale'] = "1.15",
-	['effectscale'] = "1",
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "54",
@@ -1462,6 +2875,19 @@ self.Heros = {
 	['manaregen'] = { [1] = 3.25,[2] = 3.32,[3] = 3.39,[4] = 3.45,[5] = 3.52,[6] = 3.59,[7] = 3.65,[8] = 3.72,[9] = 3.79,[10] = 3.86,[11] = 3.92,[12] = 3.99,[13] = 4.06,[14] = 4.13,[15] = 4.19, },
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Vex1",
+	['inventory1'] = "Ability_Vex2",
+	['inventory2'] = "Ability_Vex3",
+	['inventory3'] = "Ability_Vex4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "200",
@@ -1473,7 +2899,7 @@ self.Heros = {
 	['attacknumanims'] = "2",
 	['attackoffset'] = "60 130 120",
 	['attackprojectile'] = "Projectile_VexAttack",
-	['critimpacteffect'] = "/shared/effects/crit_impact.effect",
+	['attackrange'] = "500",
 	['attacktype'] = "ranged",
 	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
@@ -1487,11 +2913,53 @@ self.Heros = {
 	['agility'] = "0",
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
+	['intelligenceperlevel'] = "0",
+	['previewpos'] = "18 -10 -100",
+	['previewangles'] = "10 -10 45",
+	['previewscale'] = "1.163",
+	['storepos'] = "10 -10 -100",
+	['storeangles'] = "10 -10 45",
+	['storescale'] = "1.50",
+	['occlusionstealthtype'] = "occlusion",
+	['infoheight'] = "250",
+	['defaultfamiliar'] = "Familiar_Mystik",
+	['itembuild'] = "Vex",
+	['levelbuild'] = { [1] = 1,[2] = 2,[3] = 3,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 2,[9] = 2,[10] = 2,[11] = 4,[12] = 3,[13] = 3,[14] = 3,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
+
+--[[
+
+ _ _         _         _ _
+( | )       | |       ( | )
+ V V______ _| | ___   _V V
+   |_  / _` | |/ / | | |
+    / / (_| |   <| |_| |  _
+   /___\__,_|_|\_\\__,_| ( )
+                         |/
+
+]]
+
 ["Hero_Zaku"] =  {
+	['name'] = "Hero_Zaku",
+	['showinpractice'] = "true",
+	['team'] = "final",
+	['skin'] = "",
+	['selectedsound'] = "",
+	['selectedflavorsound'] = "",
+	['deathannouncement'] = "",
+	['itemacquireannouncement'] = "",
 	['preglobalscale'] = "1.4",
 	['modelscale'] = "1.15",
-	['effectscale'] = "1.1"  ,
 	['boundsheight'] = "112",
 	['boundsradius'] = "24",
 	['selectionradius'] = "48",
@@ -1522,6 +2990,18 @@ self.Heros = {
 	['manaproportionregen'] = "0.0",
 	['armor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
 	['magicarmor'] = { [1] = 10,[2] = 11.5,[3] = 13,[4] = 14.5,[5] = 16,[6] = 17.5,[7] = 19,[8] = 20.5,[9] = 22,[10] = 23.5,[11] = 25,[12] = 26.5,[13] = 28,[14] = 29.5,[15] = 31, },
+	['inventory0'] = "Ability_Zaku1",
+	['inventory1'] = "Ability_Zaku2",
+	['inventory2'] = "Ability_Zaku3",
+	['inventory3'] = "Ability_Zaku4",
+	['inventory4'] = "",
+	['inventory5'] = "",
+	['inventory6'] = "",
+	['inventory7'] = "",
+	['inventory8'] = "Ability_HomecomingStone_Home",
+	['inventory9'] = "",
+	['inventory10'] = "Ability_WardSwitch",
+	['inventory11'] = "Ability_AutomatedCourier",
 	['powerperlevel'] = "0",
 	['attackduration'] = "500",
 	['attackactiontime'] = "350",
@@ -1532,8 +3012,8 @@ self.Heros = {
 	['attackoffset'] = "21 150 110",
 	['attackprojectile'] = "Projectile_Zaku_Attack",
 	['attackrange'] = "500",
-	['attackstarteffect'] = "effects/attack_start.effect",
-	['attackactioneffect'] = "effects/attack_action.effect",
+	['attacktype'] = "ranged",
+	['attackdamagetype'] = "AttackDamage",
 	['combattype'] = "Hero",
 	['aggrorange'] = "600",
 	['sightrangeday'] = "1500",
@@ -1546,7 +3026,30 @@ self.Heros = {
 	['agilityperlevel'] = "0",
 	['intelligence'] = "0",
 	['intelligenceperlevel'] = "0",
+	['previewpos'] = "30 0 -115",
+	['previewangles'] = "33 0 0",
+	['previewscale'] = "1.2",
+	['storepos'] = "0 0 -80",
+	['storeangles'] = "40 0 0",
+	['storescale'] = "1.35",
+	['occlusionstealthtype'] = "occlusion",
+	['defaultfamiliar'] = "Familiar_Tortus",
+	['shadowsize'] = "110",
+	['shadowwidth'] = "110",
+	['shadowheight'] = "110",
+	['itembuild'] = "zaku",
+	['levelbuild'] = { [1] = 3,[2] = 1,[3] = 2,[4] = 1,[5] = 1,[6] = 4,[7] = 1,[8] = 3,[9] = 3,[10] = 3,[11] = 4,[12] = 2,[13] = 2,[14] = 2,[15] = 4, },
+	['corpsetime'] = "1200",
+	['corpsefadetime'] = "4000",
+	['shopaccess'] = "Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted",
+	['stashaccess'] = "true",
+	['defaultbehavior'] = "hold",
+	['altavatar'] = "true",
+	['previewpos'] = "25 0 -100",
+	['altavatar'] = "true",
+	['altavatar'] = "true",
 },
 
 }
+
 end 
