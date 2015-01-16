@@ -1,7 +1,6 @@
 _G.IsIngame = false
 _G.myHero = nil
 _G.myPlayer = nil
-
 -- Delay Action ---	
 class '_DelayAction'
 function _DelayAction:__init()
@@ -69,27 +68,27 @@ _G.Game.CastSpell = function(index, x, y)
 	if type(LastCast[i]) == "number" and (Core.GetTickCount() - LastCast[i]) < 1000 then return else LastCast[index] = Core.GetTickCount() end
 	if x == nil then
 		local p = Game.CLoLPacket(0x1B)
-		p:Encode2(Game.GetLocalPlayer().hero.uid)
+		p:Encode4(Game.GetLocalPlayer().hero.uid)
 		p:Encode1(index)
 		p:Encode1(0)
 		Game.SendPacket(p)
 	elseif type(x) == 'CObjectProxy' then
 		local p = Game.CLoLPacket(0x1D)
-		p:Encode2(Game.GetLocalPlayer().hero.uid)
-		p:Encode2(0)
+		p:Encode4(Game.GetLocalPlayer().hero.uid)
 		p:Encode1(index)
 		p:Encode4(x.uid)
-		p:Encode4(0)
+		p:Encode1(0)
+		p:Encode1(0)
 		p:Encode1(0)
 		Game.SendPacket(p)
 	else
 		local p = Game.CLoLPacket(0x1C)
-		p:Encode2(Game.GetLocalPlayer().hero.uid)
-		p:Encode2(0)
+		p:Encode4(Game.GetLocalPlayer().hero.uid)
 		p:Encode1(index)
 		p:EncodeF(x)
 		p:EncodeF(y)
-		p:Encode2(0)
+		p:Encode1(0)
+		p:Encode1(0)
 		p:Encode1(0)
 		Game.SendPacket(p)
 	end	
@@ -175,20 +174,23 @@ end
 --End Ping--
 
 --Move--
+local lastMove = 0 
 _G.Game.Move = function(x,y)
+	if ((Core.GetTickCount() - lastMove) < 100) then return else lastMove = Core.GetTickCount() end
  	local p = Game.CLoLPacket(0x1E)
- 	p:Encode1(2)
+	p:Encode1(2)
  	p:EncodeF(x)
  	p:EncodeF(y)
- 	p:Encode1(0)
  	p:Encode4(0)
- 	p:Encode4(-1)
- 	p:Encode1(0)
- 	p:Encode1(0)
- 	Game.SendPacket(p)
+	p:Encode1(0)
+	p:Encode4(-1)
+	p:Encode1(0)
+	Game.SendPacket(p)
 end
 
+local lastAMove = 0 
 _G.Game.AttackMove = function(x,y)
+	if ((Core.GetTickCount() - lastAMove) < 100) then return else lastAMove = Core.GetTickCount() end
  	local p = Game.CLoLPacket(0x1E)
  	p:Encode1(8)
  	p:EncodeF(x)
@@ -202,12 +204,15 @@ _G.Game.AttackMove = function(x,y)
 end
 --End Move-- 
 
+local lastAttack = 0 
 --Attack--
 _G.Game.Attack = function(unit) 
+	if ((Core.GetTickCount() - lastAttack) < 100) then return else lastAttack = Core.GetTickCount() end
 	local p = Game.CLoLPacket(0x1F)
 	p:Encode1(8)
-	p:Encode4(unit.uid)
+	p:Encode2(unit.uid)
 	p:Encode4(0) 
+	p:Encode2(0)
 	p:Encode1(0)
 	p:Encode4(-1)
 	p:Encode1(0)
@@ -216,7 +221,9 @@ end
 --End Attack--
 
 --Items --
+local lastItemCast = 0 
 _G.Game.CastItem = function(id,x,y)
+	if ((Core.GetTickCount() - lastItemCast) < 100) then return else lastItemCast = Core.GetTickCount() end
 	if x == nil and y == nil then 
 		local p = Game.CLoLPacket(0x1B)
 		p:Encode4(myHero.uid)
@@ -244,8 +251,10 @@ _G.Game.CastItem = function(id,x,y)
 end
 --End Items--
 --Emote--
+local lastEmote = 0 
 _G.Game.Emote = {}
 _G.Game.Emote.Send = function()
+	if ((Core.GetTickCount() - lastEmote) < 100) then return else lastEmote = Core.GetTickCount() end
 	local p = Game.CLoLPacket(0xE4)
 	p:Encode4(-1)
 	Game.SendPacket(p)
@@ -879,3 +888,4 @@ if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.DamageLib = DamageLib()
 
 --End DamageLib--
+
