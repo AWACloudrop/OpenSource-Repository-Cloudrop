@@ -62,10 +62,9 @@ end)
 
 
 -- CastSpell Start ---
-local LastCast = {}
+local LastCast = 0
 _G.Game.CastSpell = function(index, x, y)
-	index = index - 1
-	if type(LastCast[i]) == "number" and (Core.GetTickCount() - LastCast[i]) < 1000 then return else LastCast[index] = Core.GetTickCount() end
+	if (Core.GetTickCount() - LastCast) < 100 then return else LastCast = Core.GetTickCount() end 
 	if x == nil then
 		local p = Game.CLoLPacket(0x1B)
 		p:Encode4(Game.GetLocalPlayer().hero.uid)
