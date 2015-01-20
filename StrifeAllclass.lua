@@ -1,6 +1,7 @@
 _G.IsIngame = false
 _G.myHero = nil
 _G.myPlayer = nil
+
 -- Delay Action ---	
 class '_DelayAction'
 function _DelayAction:__init()
@@ -73,12 +74,11 @@ _G.Game.CastSpell = function(index, x, y)
 		Game.SendPacket(p)
 	elseif type(x) == 'CObjectProxy' then
 		local p = Game.CLoLPacket(0x1D)
-		p:Encode4(Game.GetLocalPlayer().hero.uid)
+		p:Encode2(Game.GetLocalPlayer().hero.uid)
+		p:Encode2(0)
 		p:Encode1(index)
-		p:Encode4(x.uid)
-		p:Encode1(0)
-		p:Encode1(0)
-		p:Encode1(0)
+		p:Encode2(x.uid)
+		p:Encode4(0)
 		Game.SendPacket(p)
 	else
 		local p = Game.CLoLPacket(0x1C)
