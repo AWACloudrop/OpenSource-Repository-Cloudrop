@@ -6,7 +6,6 @@
   ____) | |_| |  | | ||  __/ | |  | |  __/ | | (_) | | |__| | (_| | || (_| | |_) | (_| \__ \  __/ 
  |_____/ \__|_|  |_|_| \___| |_|  |_|\___|_|  \___/  |_____/ \__,_|\__\__,_|_.__/ \__,_|___/\___| 
  
- Author : AWA and Bilbao
 --]]
 
 class "HeroDatabase"
@@ -3051,5 +3050,13 @@ self.Heros = {
 },
 
 }
-
 end 
+
+function HeroDatabase:GetData(Hero, Data, Level)
+	assert(self.Heros[Hero.name][Data]," Error : invalid Hero or Data")
+	local Data = self.Heros[Hero.name][Data]
+	return (Level ~= nil and Data[Level]) or Data
+end 
+
+if not _G.Allclass then _G.Allclass = {} end
+_G.Allclass.HeroDatabase = HeroDatabase()
