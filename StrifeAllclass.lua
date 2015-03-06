@@ -354,6 +354,7 @@ function EntityManager:OnDeleteEntity(uid)
 end
 
 function EntityManager:ToEntity(uid)
+	if uid == nil then return end 
 	assert(type(uid) == "number", "EntityManager:ToEntity wrong argument types (<" .. tostring(type(uid)) .. ">, <number> expected)")
 	for i, e in ipairs(sh.entities) do
 		if e and e.uid == uid then return e end
@@ -643,6 +644,16 @@ function Utility:GetVirtualHP(unit)
 	return unit.health * (1 + (unit.armor / 100))
 end
 
+function Utility:SetReadOnly(table)
+ 	return setmetatable(table, {
+     	__index = table,
+     	__newindex = function(table, key, value)
+                    	error("Error : Attempt to modify read-only table")
+                 	 end,
+    	__metatable = false
+   	});
+end 
+
 if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.Utility = Utility()
 --End Utility 
@@ -885,6 +896,193 @@ end
 
 if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.DamageLib = DamageLib()
-
 --End DamageLib--
+
+_G.TS = {}
+_G.TS.LOW_HP = 1
+_G.TS.MOST_POWER = 2 
+_G.TS.CLOSEST = 3 
+_G.TS.LESS_CAST = 4 
+_G.TS.LESS_ATTACK = 5 
+
+class "TargetSelector"
+
+function TargetSelector:__init(DefaultMode, AllyTeam) 
+	self._VERSION = "1.0.0"
+	self.LastUpdate = "2/10/2015"
+	
+	self.DmgLib = Allclass.DamageLib
+	self.modes = {
+		[1] = { function(a,b) return a.health < b.health end }, -- LOW_HP 
+		[2] = { function(a,b) return a.power > b.power end }, --Most_POWER 
+		[3] = { function(a,b) return myHero:DistanceTo(a) < myHero:DistanceTo(b) end}, -- CLOSET
+		[4] = { function(a,b) return self.DmgLib:CalcMagicDamage(a, 100) > self.DmgLib(b, 100) end }, -- LESS_CAST
+		[5] = { function(a,b) return self.DmgLib:ComputeAADmg(myHero,a) > self.DmgLib:ComputeAADmg(myHero,b) end }, -- LESS_ATTACK
+		[6] = { function(a,b) return self:GetPriority(a) < self:GetPriority(b) end } -- PRIORITY 
+	}
+
+	self.DF = DefaultMode
+	self.enemyT = AllyTeam ~= true 
+	--Game.PrintToChat("TargetSelector Version: "..self._VERSION.." Loaded, Last Update : "..self.LastUpdate)
+
+	return self 
+end 
+
+
+function TargetSelector:LoadToMenu(menu)
+	--{Ts Menu}--
+	self.menu = menu or MenuConfig("TS", "TargetSelector")
+		self.menu:Picture("C:\\Users\\qhed\\AppData\\Roaming\\gamesteroids\\bin\\assets\\2\\lol3.png")
+		self.menu:Empty("tsinfo1", "<font  color= #01AEBF> <center> Strife TargetSelector </center> </font>")
+	
+	--{TS options}--
+	self.menu:Section("tsinfo2","<font  color= #01AEBF> TargetSelector Options : </font>")
+		self.menu:Info("tsinfo3","Mode"):Icon("fa-bullseye")
+		self.menu:DropDown("mode", "", self.DF, { "LOW_HP", "MOST_POWER", "CLOSET", "LESS_CAST", "LESS_ATTACK", "PRIORITY"}, nil, true):Icon("fa-list") 
+		self.menu:Boolean("selected", "Focus selected target", false):Note("Focus selected target regardless of mode")
+		self.menu:Button("reset", "Reset priority settings", self:setAutoPriority()):Note("Uses autopriority to reset"):Icon('fa-recycle')
+
+	--{Drawing}--
+	self.menu:Section("tsinfo2","<font  color= #01AEBF> Drawing : </font>")
+		self.menu:Boolean("drawT", "Draw actual target", true)
+		self.menu:Boolean("drawS", "Draw selected target", true):Note("Draw leftclick selected target")
+		self.menu:Section("prioinfo", "<font  color= #01AEBF> Set Priority here : </font>")
+	
+	--{Priority}--
+	local Heros = Allclass.HeroManager:GetPlayers(self.enemyT)
+	if #Heros == 0 then self.menu:Info("tsinfo4"," No enemys found "):Icon("fa-exclamation-triangle") end
+	for each, hero in ipairs(Heros) do 
+		self.menu:Slider(hero.name, hero.name, 1, 1, 5, 1)
+	end 
+
+	--{Extra stuff}--
+	self:setAutoPriority()
+	self.menu:Section("tsinfo5","<font  color= #01AEBF> Quote of the day : </font>")
+		self.menu:Empty("tsquote"," â€œWhen a man cannot chose, he ceases to be a man.â€ ")
+end 
+
+function TargetSelector:setAutoPriority() 
+	local priorityTable = {
+		[1] = { "Hero_Blazer", "Hero_Caprice", "Hero_Fetterstone", "Hero_Rook", "Hero_Vermillion" },
+		[2] = { "Hero_Malady", "Hero_Moxie", "Hero_Trixie", "Hero_Ray", "Hero_Iah" },
+		[3] = { "Hero_Chester", "Hero_Gokong", "Hero_Hale", "Hero_LadyTinder", "Hero_Harrower"},
+		[4] = { "Hero_Shank", "Hero_JinShe", "Hero_Bandito", "Hero_Zaku", "Hero_Vex", "Hero_Carter"},
+		[5] = { "Hero_Minerva", "Hero_Nikolai", "Hero_Ace", "Hero_Bastion", "Hero_Bo", "Hero_Claudessa"}
+	}
+
+	local Heros = Allclass.HeroManager:GetPlayers(self.enemyT)
+
+	for each, hero in ipairs(Heros) do 
+		for each, tab in pairs(priorityTable) do 
+			local contains = table.contains(tab, hero.name)
+			if contains then
+				if self.menu[hero.name] then self.menu[hero.name]:Value(each) end 
+			end
+		end  
+	end 
+end 
+
+function TargetSelector:GetTarget(range) 
+	local Team = (self.enemyT and ENEMY_TEAM) or ALLY_TEAM
+	local availableHeros = Allclass.HeroManager:GetHeros(Team, range)
+	
+	if #availableHeros > 0 then 
+		table.sort(availableHeros, self.modes[self.menu.mode:Value()])
+		return availableHeros[1]
+	end 
+end 
+
+function TargetSelector:GetPriority(unit)
+	return self.menu[unit.name]:Value()
+end 
+
+_G.ENEMY_TEAM = 0 
+_G.ALLY_TEAM = 1
+
+class "HeroManager" 
+
+function HeroManager:__init() 
+	self.T = 0 
+	self.Delay = 200
+end 
+
+function HeroManager:IsAlly(unit)
+	return unit.isHero and unit.team == myHero.team 
+end 
+
+function HeroManager:IsEnemy(unit)
+	return unit.isHero and unit.team ~= myHero.team 
+end 
+
+function HeroManager:IsValid(unit, enemyTeam)
+	return unit.valid and unit.isHero and (enemyTeam ~= false and self:IsEnemy(unit)) or self:IsAlly(unit) and not unit.dead
+end 
+
+function HeroManager:GetHeros(Team, Range, Health)
+	--Updates every 0,2 sec if called in a loop.
+	if self.T > Core.GetTickCount() + self.Delay then return else self.T = Core.GetTickCount() end
+	local Distance = function(unit) return myHero.pos:DistanceTo(unit.pos) end 
+	local Heros = {}
+	Range = Range or 20000
+	Health =  Health or 0 
+	local isEnemyTeam = Team == ENEMY_TEAM  
+
+	for each, player in ipairs(sh.players) do 
+		local hero = player.hero
+		if self:IsValid(hero, isEnemyTeam) and Distance(hero) < Range and unit.health > Health then
+			table.insert(enemyHeros, hero)
+		end 
+	end 
+
+	return Allclass.Utility:SetReadOnly(Heros) 
+end 
+
+function HeroManager:GetPlayers(enemyT)
+	enemyT = enemyT ~= false 
+	local Heros = {}
+	for each, player in ipairs(sh.players) do
+		local hero = player.hero  
+		if enemyT and self:IsEnemy(hero) then 
+			table.insert(Heros, hero)
+		elseif not(enemyT) and self:IsAlly(hero) then
+			table.insert(Heros, hero)
+		end 
+	end 
+
+	return Allclass.Utility:SetReadOnly(Heros) 
+end 
+
+function HeroManager:GetTestClones(Range, health)
+	Range = Range or 20000
+	local Distance = function(unit) return myHero.pos:DistanceTo(unit.pos) end 
+	local Clones = {}
+	for each, e in ipairs(sh.entities) do
+		if e and e.valid and e.name:lower():find("hero") and e.uid ~= myHero.uid and e.health > 0 and e.health >= health and Distance(e.pos) < Range then
+			table.insert(Clones,e)
+		end
+	end
+
+	return Allclass.Utility:SetReadOnly(Clones)
+end 
+
+function HeroManager:GetClosetTestClone()	
+	local Clones = self:GetTestClones()
+	local D, closet = math.huge, nil
+	local Distance = function(unit) return myHero.pos:DistanceTo(unit.pos) end 
+	local dis
+
+	for each, c in ipairs(Clones) do  
+		dis = Distance(c) 
+		if dis < D then 
+			D = dis 
+			closet = c 
+		end 
+	end 
+	return closet
+end 
+
+if not _G.Allclass then _G.Allclass = {} end
+_G.Allclass.HeroManager = HeroManager() 
+
+
 
