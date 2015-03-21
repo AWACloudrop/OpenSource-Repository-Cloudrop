@@ -94,7 +94,7 @@ function Orbwalker:Tick()
 	if Keyboard.IsKeyDown(string.byte("E")) then
 		self:Orbwalk(self.Target,mousePos)
 	end 
-	if self.DebugMode then print(self:CanAttack()) end 
+	--if self.DebugMode then print(self:CanAttack()) end 
 end
  
 function Orbwalker:Orbwalk(Target,To)
