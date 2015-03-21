@@ -2,6 +2,28 @@ _G.IsIngame = false
 _G.myHero = nil
 _G.myPlayer = nil
 
+-- CustomGameStart Start ---
+local CallCustomGameStart = function()
+	if _G.IsIngame then return end 
+	_G.IsIngame = true
+	
+	if Game.GetLocalPlayer().valid and Game.GetLocalPlayer().hero.valid then
+		_G.myHero = Game.GetLocalPlayer().hero 
+		_G.myPlayer = Game.GetLocalPlayer()
+	end 
+
+	for k, v in ipairs(Callback.GetCallbacks('CustomGameStart')) do
+		v()
+	end
+end
+
+Callback.Bind('SendPacket',function(p)
+	if p.header == 0x4A then
+		CallCustomGameStart()		
+	end
+end)
+-- CustomGameStart Ende ---
+
 -- Delay Action ---	
 class '_DelayAction'
 function _DelayAction:__init()
@@ -32,34 +54,6 @@ local __DA = _DelayAction()
 if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.DelayAction = function(func, delay, args) __DA:AddDA(func, delay, args) end
 -- //Delay Action ---
-
-
--- CustomGameStart Start ---
-local CGS = { IsIngame = false, LastCheckTick = 0 }
-local CallCustomGameStart = function()
-		CGS.IsIngame = true
-		_G.IsIngame = true
-		_G.myHero = Game.GetLocalPlayer().hero
-		_G.myPlayer = Game.GetLocalPlayer()
-	for k, v in ipairs(Callback.GetCallbacks('CustomGameStart')) do
-		v()
-	end
-end
-
-Callback.Bind('SendPacket',function(p)
-	if p.header == 0x49 then
-		CallCustomGameStart()		
-	end
-end)
-
-Callback.Bind("Tick", function()
-	if CGS.IsIngame then return end
-	if ((Core.GetTickCount() - CGS.LastCheckTick) < 1000) then return else LastCheckTick = Core.GetTickCount() end
-	if Game.GetLocalPlayer().valid and Game.GetLocalPlayer().hero.valid then
-		CallCustomGameStart()
-	end
-end)
--- CustomGameStart Ende ---
 
 
 -- CastSpell Start ---
@@ -249,6 +243,13 @@ _G.Game.CastItem = function(id,x,y)
 	end 
 end
 --End Items--
+_G.Game.Pause = 1 
+_G.Game.Unpause = 0 
+_G.Game.IssuePause = function(Type)
+	local p = Game.CLoLPacket(0xCC)
+	p:Encode1(Type or 1)
+	Game.SendPacket(p)
+end 
 --Emote--
 local lastEmote = 0 
 _G.Game.Emote = {}
@@ -279,8 +280,8 @@ end
 			end		
 		
 		end)
-]]
 
+]]
 class 'EntityManager'
 function EntityManager:__init()
 	if not _G.EMMemory then
@@ -396,7 +397,7 @@ _G.Game.EntityManager_ENEMY = 2
 _G.Game.EntityManager_ALL = 3
 --End EntityManager--
 
-
+--[[
 -- Prediction Start ---
 class 'Prediction'
 function Prediction:__init()
@@ -516,6 +517,7 @@ end
 if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.Prediction = Prediction()
 -- Prediction Ende ---
+]]
 
 -- Collision ---
 class 'Collision'
@@ -644,6 +646,10 @@ function Utility:GetVirtualHP(unit)
 	return unit.health * (1 + (unit.armor / 100))
 end
 
+function Utility:GetCharName(unit)
+	return string.sub(unit.name,6)
+end 
+
 function Utility:SetReadOnly(table)
  	return setmetatable(table, {
      	__index = table,
@@ -658,209 +664,165 @@ if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.Utility = Utility()
 --End Utility 
 
-class "DataBase"
+--DamageLib--
 
-function DataBase:__init()
-	self.IDS = { ["Q"] = 1, 
-		["W"] = 2,
-		["E"] = 3,
-		["R"] = 4 
-	}
+class "DamageLib"
+
+function DamageLib:__init()
+	self.Spells, self.RegSpells = {}, {}
 	--Credits Mario <3
-	self.Heroes = {
-		['Hero_Ace'] = {
-			[1]  = { basedmg = 60,  perlvl = 35 },
-			[2]  = { basedmg = 50,  perlvl = 25 },
-			[3]  = { basedmg = 18,  perlvl = 12 },
-			[4]  = { basedmg = 170, perlvl = 85 },
-		},
-		['Hero_Bastion'] = {
-			[1]  = { basedmg = 60,  perlvl = 30 },
-			[2]  = { basedmg = 50,  perlvl = 25 },
-			[3]  = { basedmg = 0,   perlvl = 40 },
-			[4]  = { basedmg = 140, perlvl = 60 }		
-		},
-		['Hero_Blazer'] = {
-			[1]  = { basedmg = 65,  perlvl = 50 },
-			[2]  = { basedmg = 60,  perlvl = 20 },
-			[3]  = { basedmg = 0,   perlvl = 3  } -- Passive per auto
-		},
-		['Hero_Bo'] = {
-			[1]  = { basedmg = 20,  perlvl = 20 },
-			[2]  = { basedmg = 55,  perlvl = 25 },
-			[4]  = { basedmg = 100, perlvl = 40 }
-		},
-		['Hero_Caprice'] = {
-			[1]  = { basedmg = 50,  perlvl = 20 },
-			[2]  = { basedmg = 45,  perlvl = 25 },
-			[3]  = { basedmg = 15,  perlvl = 15 },
-			[4]  = { basedmg = 60,  perlvl = 30 }
-		},
-		['Hero_Carter'] = {
-			[1]  = { basedmg = 45,  perlvl = 25 },
-			[2]  = { basedmg = 50,  perlvl = 30 },
-			[3]  = { basedmg = 15,  perlvl = 10 }, -- Damage per sec
-			[4]  = { basedmg = 100, perlvl = 50 }
-		},
-		['Hero_Chester'] = {
-			[1]  = { basedmg = 15,  perlvl = 25 }, -- Damage per knight this*4 = max damage
-			[2]  = { basedmg = 50,  perlvl = 30 },
-			[4]  = { basedmg = 60,  perlvl = 30 } -- Damage per second
-		},
-		['Hero_Claudessa'] = {
-			[1]  = { basedmg = 55,  perlvl = 25 },
-			[3]  = { basedmg = 10,  perlvl = 10 }, -- Passive per auto
-			[4]  = { basedmg = 26,  perlvl = 12 }  -- Damage per sec
-		},
-		['Hero_Fetterstone'] = {
-			[1]  = { basedmg = 35,  perlvl = 15 },
-			[2]  = { basedmg = 70,  perlvl = 35 }
-		},
-		['Hero_Gokong'] = {
-			[1]  = { basedmg = 0,   perlvl = 15 },
-			[2]  = { basedmg = 40,  perlvl = 25 },
-			[3]  = { basedmg = -4,  perlvl = 8  }  -- Passive per auto
-		},
-		['Hero_Hale'] = {
-			[1]  = { basedmg = 45,  perlvl = 25 },
-			[4]  = { basedmg = 100, perlvl = 50 }
-		},
-		['Hero_Harrower'] = {
-			[1]  = { basedmg = 15,  perlvl = 15 }
-		},
-		['Hero_Iah'] = {
-			[1]  = { basedmg = 15,  perlvl = 5  }, -- per sand thingy attack
-			[2]  = { basedmg = 70,  perlvl = 50 }, -- 3 secs of damage (max)
-			[4]  = { basedmg = 110, perlvl = 60 } -- heals allies for same amount that it deals to enemies
-		},
-		['Hero_JinShe'] = {
-			[1]  = { basedmg = 50,  perlvl = 25 },
-			[2]  = { basedmg = 45,  perlvl = 25 },
-			[4]  = { basedmg = 12,  perlvl = 6  } -- Damage per sec
-		},
-		['Hero_LadyTinder'] = {
-			[1]  = { basedmg = 50,  perlvl = 30 },
-			[2]  = { basedmg = 55,  perlvl = 30 },
-			[4]  = { basedmg = 40,  perlvl = 20 } -- Damager per plant attack
-		},
-		['Hero_Malady'] = {
-			[1]  = { basedmg = 55,  perlvl = 25 },
-			[2]  = { basedmg = 90,  perlvl = 60 }, -- 5 secs of damage (max)
-			[4]  = { basedmg = 180, perlvl = 90 }
-		},
-		['Hero_Minerva'] = {
-			[1]  = { basedmg = 5,   perlvl = 15 },
-			[2]  = { basedmg = 50,  perlvl = 35 },
-			[4]  = { basedmg = 100, perlvl = 50 } -- + 50% if behind target
-		},
-		['Hero_Moxie'] = {
-			[1]  = { basedmg = 40,  perlvl = 25 },
-			[2]  = { basedmg = 55,  perlvl = 30 },
-			[4]  = { basedmg = 95,  perlvl = 45 } -- Min Damage (if enemy not in center)
-			--[5] = {basedmg = 50,  perlvl = 25} Additional Damage if Enemy in Center
-			--[6] = {basedmg = 145,  perlvl = 70} Full Damage (if enemy in center)
-		},
-		['Hero_Nikolai'] = {
-			[2]  = { basedmg = 45,  perlvl = 25 },
-			[3]  = { basedmg = 4,   perlvl = 2  }, -- % of their max hp so (this/100) * unit.maxhp = real damage
-			[4]  = { basedmg = 130, perlvl = 65 }
-		},
-		['Hero_Ray'] = {
-			[1]  = { basedmg = 55,  perlvl = 35 },
-			[2]  = { basedmg = 50,  perlvl = 25 },
-			[3]  = { basedmg = 10,  perlvl = 15 }, -- Bonus Damage on next attack
-			[4]  = { basedmg = 140, perlvl = 70 } -- Reduced by 15% for each hiro hit
-		},
-		['Hero_Rook'] = {
-			[1]  = { basedmg = 15,  perlvl = 35 },
-			[2]  = { basedmg = 20,  perlvl = 40 },
-			[3]  = { basedmg = 1,   perlvl = 1  }, -- Bonus Attack Damage per stack
-			[4]  = { basedmg = 135, perlvl = 65 } -- Max Damage based on distance
-		},
-		['Hero_Shank'] = {
-			[1]  = { basedmg = 50,  perlvl = 35 },
-			[4]  = { basedmg = 120, perlvl = 60 }
-		},
-		['Hero_Trixie'] = {
-			[1]  = { basedmg = 60,  perlvl = 25 },
-			[3]  = { basedmg = 45,  perlvl = 20 } -- Damage per sec max 5 secs (this*5)
-		},
-		['Hero_Vermillion'] = {
-			[1]  = { basedmg = 60,  perlvl = 25 },
-			[3]  = { basedmg = 100, perlvl = 50 }
-		},
-		['Hero_Vex'] = {
-			[1]  = { basedmg = 60,  perlvl = 35 },
-			[2]  = { basedmg = 80,  perlvl = 50 }, -- Up to 70% bonus damage if single target
-			[4]  = { basedmg = 100, perlvl = 50 }
-		},
-		['Hero_Zaku'] = {
-			[1]  = { basedmg = 45,  perlvl = 20 },
-			[2]  = { basedmg = 45,  perlvl = 30 }, -- Up to 70% bonus damage if single target
-			[4]  = { basedmg = 50,  perlvl = 50 } -- Roaches Damage
-		}
-	}
-end
+   	self.Heroes = {
+      ['Hero_Ace'] = {
+         [1]  = { basedmg = 60,  perlvl = 35 },
+         [2]  = { basedmg = 50,  perlvl = 25 },
+         [3]  = { basedmg = 18,  perlvl = 12 },
+         [4]  = { basedmg = 170, perlvl = 85 },
+      },
+      ['Hero_Bastion'] = {
+         [1]  = { basedmg = 60,  perlvl = 30 },
+         [2]  = { basedmg = 50,  perlvl = 25 },
+         [3]  = { basedmg = 0,   perlvl = 40 },
+         [4]  = { basedmg = 140, perlvl = 60 }     
+      },
+      ['Hero_Blazer'] = {
+         [1]  = { basedmg = 65,  perlvl = 50 },
+         [2]  = { basedmg = 60,  perlvl = 20 },
+         [3]  = { basedmg = 0,   perlvl = 3  } -- Passive per auto
+      },
+      ['Hero_Bo'] = {
+         [1]  = { basedmg = 20,  perlvl = 20 },
+         [2]  = { basedmg = 55,  perlvl = 25 },
+         [4]  = { basedmg = 100, perlvl = 40 }
+      },
+      ['Hero_Caprice'] = {
+         [1]  = { basedmg = 50,  perlvl = 20 },
+         [2]  = { basedmg = 45,  perlvl = 25 },
+         [3]  = { basedmg = 15,  perlvl = 15 },
+         [4]  = { basedmg = 60,  perlvl = 30 }
+      },
+      ['Hero_Carter'] = {
+         [1]  = { basedmg = 45,  perlvl = 25 },
+         [2]  = { basedmg = 50,  perlvl = 30 },
+         [3]  = { basedmg = 15,  perlvl = 10 }, -- Damage per sec
+         [4]  = { basedmg = 100, perlvl = 50 }
+      },
+      ['Hero_Chester'] = {
+         [1]  = { basedmg = 15,  perlvl = 25 }, -- Damage per knight this*4 = max damage
+         [2]  = { basedmg = 50,  perlvl = 30 },
+         [4]  = { basedmg = 60,  perlvl = 30 } -- Damage per second
+      },
+      ['Hero_Claudessa'] = {
+         [1]  = { basedmg = 55,  perlvl = 25 },
+         [3]  = { basedmg = 10,  perlvl = 10 }, -- Passive per auto
+         [4]  = { basedmg = 26,  perlvl = 12 }  -- Damage per sec
+      },
+      ['Hero_Fetterstone'] = {
+         [1]  = { basedmg = 35,  perlvl = 15 },
+         [2]  = { basedmg = 70,  perlvl = 35 }
+      },
+      ['Hero_Gokong'] = {
+         [1]  = { basedmg = 0,   perlvl = 15 },
+         [2]  = { basedmg = 40,  perlvl = 25 },
+         [3]  = { basedmg = -4,  perlvl = 8  }  -- Passive per auto
+      },
+      ['Hero_Hale'] = {
+         [1]  = { basedmg = 45,  perlvl = 25 },
+         [4]  = { basedmg = 100, perlvl = 50 }
+      },
+      ['Hero_Harrower'] = {
+         [1]  = { basedmg = 15,  perlvl = 15 }
+      },
+      ['Hero_Iah'] = {
+         [1]  = { basedmg = 15,  perlvl = 5  }, -- per sand thingy attack
+         [2]  = { basedmg = 70,  perlvl = 50 }, -- 3 secs of damage (max)
+         [4]  = { basedmg = 110, perlvl = 60 } -- heals allies for same amount that it deals to enemies
+      },
+      ['Hero_JinShe'] = {
+         [1]  = { basedmg = 50,  perlvl = 25 },
+         [2]  = { basedmg = 45,  perlvl = 25 },
+         [4]  = { basedmg = 12,  perlvl = 6  } -- Damage per sec
+      },
+      ['Hero_LadyTinder'] = {
+         [1]  = { basedmg = 50,  perlvl = 30 },
+         [2]  = { basedmg = 55,  perlvl = 30 },
+         [4]  = { basedmg = 40,  perlvl = 20 } -- Damager per plant attack
+      },
+      ['Hero_Malady'] = {
+         [1]  = { basedmg = 55,  perlvl = 25 },
+         [2]  = { basedmg = 90,  perlvl = 60 }, -- 5 secs of damage (max)
+         [4]  = { basedmg = 180, perlvl = 90 }
+      },
+      ['Hero_Minerva'] = {
+         [1]  = { basedmg = 5,   perlvl = 15 },
+         [2]  = { basedmg = 50,  perlvl = 35 },
+         [4]  = { basedmg = 100, perlvl = 50 } -- + 50% if behind target
+      },
+      ['Hero_Moxie'] = {
+         [1]  = { basedmg = 40,  perlvl = 25 },
+         [2]  = { basedmg = 55,  perlvl = 30 },
+         [4]  = { basedmg = 95,  perlvl = 45 } -- Min Damage (if enemy not in center)
+         --[5] = {basedmg = 50,  perlvl = 25} Additional Damage if Enemy in Center
+         --[6] = {basedmg = 145,  perlvl = 70} Full Damage (if enemy in center)
+      },
+      ['Hero_Nikolai'] = {
+         [2]  = { basedmg = 45,  perlvl = 25 },
+         [3]  = { basedmg = 4,   perlvl = 2  }, -- % of their max hp so (this/100) * unit.maxhp = real damage
+         [4]  = { basedmg = 130, perlvl = 65 }
+      },
+      ['Hero_Ray'] = {
+         [1]  = { basedmg = 55,  perlvl = 35 },
+         [2]  = { basedmg = 50,  perlvl = 25 },
+         [3]  = { basedmg = 10,  perlvl = 15 }, -- Bonus Damage on next attack
+         [4]  = { basedmg = 140, perlvl = 70 } -- Reduced by 15% for each hiro hit
+      },
+      ['Hero_Rook'] = {
+         [1]  = { basedmg = 15,  perlvl = 35 },
+         [2]  = { basedmg = 20,  perlvl = 40 },
+         [3]  = { basedmg = 1,   perlvl = 1  }, -- Bonus Attack Damage per stack
+         [4]  = { basedmg = 135, perlvl = 65 } -- Max Damage based on distance
+      },
+      ['Hero_Shank'] = {
+         [1]  = { basedmg = 50,  perlvl = 35 },
+         [4]  = { basedmg = 120, perlvl = 60 }
+      },
+      ['Hero_Trixie'] = {
+         [1]  = { basedmg = 60,  perlvl = 25 },
+         [3]  = { basedmg = 45,  perlvl = 20 } -- Damage per sec max 5 secs (this*5)
+      },
+      ['Hero_Vermillion'] = {
+         [1]  = { basedmg = 60,  perlvl = 25 },
+         [3]  = { basedmg = 100, perlvl = 50 }
+      },
+      ['Hero_Vex'] = {
+         [1]  = { basedmg = 60,  perlvl = 35 },
+         [2]  = { basedmg = 80,  perlvl = 50 }, -- Up to 70% bonus damage if single target
+         [4]  = { basedmg = 100, perlvl = 50 }
+      },
+      ['Hero_Zaku'] = {
+         [1]  = { basedmg = 45,  perlvl = 20 },
+         [2]  = { basedmg = 45,  perlvl = 30 }, -- Up to 70% bonus damage if single target
+         [4]  = { basedmg = 50,  perlvl = 50 } -- Roaches Damage
+      }
+    }
+	
+    self.Player = myHero 
+end 
 
-function DataBase:GetSpellInfo(Hero,Spell)
-	if type(Spell) == "string" then Spell = self:GetAbilityID(Spell) end 
+--//Not Needed if you don't want to override the db info  
+function DamageLib:RegisterSpell(Spell, baseDamage, perLevel)
+	self.Spells[Spell] = { baseDamage = baseDamage, perLevel = perLevel }
+	table.insert(self.RegSpells, Spell)
+end 
+
+function DamageLib:GetSpellInfo(Hero, Spell)
 	assert(self.Heroes[Hero.name][Spell],"Error: Spell or Hero not found !") 
 	return self.Heroes[Hero.name][Spell]
 end
 
-function DataBase:GetRotation(hero)
-	local Rotation = {}
-
-    for i = 1, 4 do 
-        if self.Heroes[hero.name][i] ~= nil then 
-            table.insert(Rotation,i)
-        end 
-    end 
-
-    return Rotation
-end
-
-function DataBase:GetAbilityID(Spell)
-	return self.IDS[Spell]
-end
-
-
-if not _G.Allclass then _G.Allclass = {} end
-_G.Allclass.DataBase = DataBase()
-
---DamageLib--
-class "DamageLib"
-
-function DamageLib:__init()
-	self.Spells = {}
-	self.RegSpells = {}
+function DamageLib:SetCustomRotation(Rotation)
+	self.RegSpells = Rotation
 end 
 
---//Not Needed if you don't want to override the db info  
-function DamageLib:RegisterSpell(Spell,baseDamage,perLevel)
-	self.Spells[Spell] = {baseDamage = baseDamage, perLevel = perLevel, Type = Type}
-	table.insert(self.RegSpells,Spell)
-end 
-
-function DamageLib:GetDamage(unit,Target,Spell)
-	if type(Spell) == "string" then Spell = Allclass.DataBase:GetAbilityID(Spell) end 
-	--//if No Overriden info reads from db
-	local S = (self.Spells[Spell] ~= nil and self.Spells[Spell]) or Allclass.DataBase:GetSpellInfo(unit,Spell)
-	local DefaultDmg = S.basedmg + (S.perlvl * unit:GetAbility(Spell).level)
-	local pureDamage = self:GetPDamage(myHero,DefaultDmg)
-	return self:CalcMagicDamage(unit,pureDamage)
-end 
-
-function DamageLib:GetPureDamage(unit,Spell)
-	if type(Spell) == "string" then Spell = Allclass.DataBase:GetAbilityID(Spell) end 
-	local S = (self.Spells[Spell] ~= nil and self.Spells[Spell]) or Allclass.DataBase:GetSpellInfo(unit,Spell)
-	local DefaultDmg = S.basedmg + (S.perlvl * unit:GetAbility(Spell).level)
-
-	return self:GetPDamage(myHero,DefaultDmg)
-end
-
---//return damage without taking care of armor magicRes...
---//unit.power still not fixed giving 0
 function DamageLib:GetPDamage(unit,Damage)
 	return Damage * (unit.power / 100) 
 end
@@ -873,14 +835,30 @@ function DamageLib:CalcMagicDamage(unit,Damage)
 	return Damage / (1 + (unit.magicArmor / 100))
 end 
 
-function DamageLib:ComputeAADmg(unit,Target)
-	local PADmg = unit.baseDamage * (unit.power / 100)
-	return self:CalcDamage(Target,PADmg)
+function DamageLib:GetPureDamage(unit, Spell)
+	local S = (self.Spells[Spell] ~= nil and self.Spells[Spell]) or self:GetSpellInfo(unit, Spell)
+	local DefaultDmg = S.basedmg + (S.perlvl * unit:GetAbility(Spell).level)
+
+	return self:GetPDamage(self.Player, DefaultDmg)
 end
 
-function DamageLib:GetComboDamage(unit,Target,Rotation)
+function DamageLib:ComputeAADmg(unit,Target)
+	local PADmg = unit.baseDamage * (unit.power / 100)
+	return self:CalcDamage(Target, PADmg)
+end
+
+function DamageLib:GetDamage(unit, Target, Spell)
+	--//if No Overriden info reads from db
+	local S = (self.Spells[Spell] ~= nil and self.Spells[Spell]) or self:GetSpellInfo(unit, Spell)
+	local DefaultDmg = S.basedmg + (S.perlvl * unit:GetAbility(Spell).level)
+
+	local pureDamage = self:GetPDamage(self.Player, DefaultDmg)
+	return self:CalcMagicDamage(unit, pureDamage)
+end 
+
+function DamageLib:GetComboDamage(unit, Target, Rotation)
 	local TDamage, Rotation = 0, (Rotation ~= nil and Rotation) or 
-		(#self.RegSpells > 0 and self.RegSpells)  or Allclass.DataBase:GetRotation(unit)
+		(#self.RegSpells > 0 and self.RegSpells) or self:GetRotation(unit)
 
 	for each, Spell in pairs(Rotation) do 
 		local D = self:GetPureDamage(unit,Spell)
@@ -889,10 +867,6 @@ function DamageLib:GetComboDamage(unit,Target,Rotation)
 
 	return (Target ~=  nil and self:CalcMagicDamage(Target,TDamage)) or TDamage
 end
-
-function DamageLib:SetCustomRotation(Rotation)
-	self.RegSpells = Rotation
-end 
 
 if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.DamageLib = DamageLib()
@@ -958,7 +932,7 @@ function TargetSelector:LoadToMenu(menu)
 	--{Extra stuff}--
 	self:setAutoPriority()
 	self.menu:Section("tsinfo5","<font  color= #01AEBF> Quote of the day : </font>")
-		self.menu:Empty("tsquote"," â€œWhen a man cannot chose, he ceases to be a man.â€ ")
+		self.menu:Empty("tsquote"," “When a man cannot chose, he ceases to be a man.” ")
 end 
 
 function TargetSelector:setAutoPriority() 
@@ -1054,10 +1028,11 @@ end
 
 function HeroManager:GetTestClones(Range, health)
 	Range = Range or 20000
+	health = health or 0
 	local Distance = function(unit) return myHero.pos:DistanceTo(unit.pos) end 
 	local Clones = {}
 	for each, e in ipairs(sh.entities) do
-		if e and e.valid and e.name:lower():find("hero") and e.uid ~= myHero.uid and e.health > 0 and e.health >= health and Distance(e.pos) < Range then
+		if e and e.valid and e.name:lower():find("hero") and e.uid ~= myHero.uid and e.isAlive and e.health >= health and Distance(e) < Range then
 			table.insert(Clones,e)
 		end
 	end
@@ -1085,4 +1060,10 @@ if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.HeroManager = HeroManager() 
 
 
-
+local checkReload = function() 
+	if _G.IsIngame then return end
+	if Game.GetLocalPlayer().valid and Game.GetLocalPlayer().hero.valid then
+		CallCustomGameStart()
+	end 
+end
+checkReload()
