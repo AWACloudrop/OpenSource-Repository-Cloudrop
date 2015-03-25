@@ -1,13 +1,14 @@
 _G.IsIngame = false
 _G.myHero = nil
 _G.myPlayer = nil
+_G.mousePos = Game.GetCursor
 
 -- CustomGameStart Start ---
 local CallCustomGameStart = function()
 	if _G.IsIngame then return end 
-	_G.IsIngame = true
 	
 	if Game.GetLocalPlayer().valid and Game.GetLocalPlayer().hero.valid then
+		_G.IsIngame = true
 		_G.myHero = Game.GetLocalPlayer().hero 
 		_G.myPlayer = Game.GetLocalPlayer()
 	end 
@@ -371,7 +372,7 @@ function EntityManager:GetEntitys(range, vec3, team)
 	else pres = _G.EMMemory.ENEMY
 	end
 	for i, e in pairs(pres) do
-		if e.pos:DistanceTo(vec3) < range then table.insert(result, e) end
+		if e.isAlive and e.health ~= 0 and e.pos:DistanceTo(vec3) < range then table.insert(result, e) end
 	end
 	return result
 end
@@ -386,7 +387,7 @@ function EntityManager:GetLowest(range, vec3, team, lowerthen)
 	else pres = _G.EMMemory.ENEMY
 	end
 	for i, e in pairs(pres) do
-		if e.pos:DistanceTo(vec3) < range and e.health < lowerthen and e.health < (result.health or 100000) then result = e end
+		if e.isAlive and e.health ~= 0 and  e.pos:DistanceTo(vec3) < range and e.health < lowerthen and e.health < ((result ~= nil and result.health) or 100000) then result = e end
 	end
 	return result
 end
@@ -397,7 +398,6 @@ _G.Game.EntityManager_ENEMY = 2
 _G.Game.EntityManager_ALL = 3
 --End EntityManager--
 
---[[
 -- Prediction Start ---
 class 'Prediction'
 function Prediction:__init()
@@ -517,7 +517,7 @@ end
 if not _G.Allclass then _G.Allclass = {} end
 _G.Allclass.Prediction = Prediction()
 -- Prediction Ende ---
-]]
+
 
 -- Collision ---
 class 'Collision'
@@ -827,12 +827,12 @@ function DamageLib:GetPDamage(unit,Damage)
 	return Damage * (unit.power / 100) 
 end
 
-function DamageLib:CalcDamage(unit,Damage)
-	return Damage / (1 + (unit.armor / 100))
+function DamageLib:CalcDamage(unit, Damage)
+	return Damage / (1 + (unit.resistance / 100))
 end 
 
 function DamageLib:CalcMagicDamage(unit,Damage)
-	return Damage / (1 + (unit.magicArmor / 100))
+	return Damage / (1 + (unit.resistance / 100))
 end 
 
 function DamageLib:GetPureDamage(unit, Spell)
@@ -842,8 +842,9 @@ function DamageLib:GetPureDamage(unit, Spell)
 	return self:GetPDamage(self.Player, DefaultDmg)
 end
 
-function DamageLib:ComputeAADmg(unit,Target)
-	local PADmg = unit.baseDamage * (unit.power / 100)
+function DamageLib:ComputeAADmg(unit, Target)
+	--local PADmg = unit.baseDamage * (unit.power / 100)
+	local PADmg = unit.attackDamageMax
 	return self:CalcDamage(Target, PADmg)
 end
 
