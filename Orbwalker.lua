@@ -11,7 +11,7 @@
 -----------------------        Strife Orbwalker          ------------------------
 --------------------------------------------------------------------------------
 -- Project: Orbwalker class                                                   --
--- Release: 1.0.0 beta                                                        --
+-- Release: 1.0.1 beta                                                        --
 -- Title  : Script that orbwalks for you, GO BIG.                             --
 -- Author : AWA                                                               --
 --------------------------------------------------------------------------------
@@ -38,11 +38,19 @@ function Orbwalker:__init(defaultMode)
 	self.availableMinions = {}
 	self.LastT = 0 
 	self.LP = 0 
-
+	
+	--{ Buttons }--
+	self.Button = {
+		Info =		CreateInfoBoxButton("Orbwalker: ", 25, 28, 20),
+		Fight =		CreateKeyButton("~Fight: ", "E", 25, 50, 20),
+		LastHit =	CreateKeyButton("~LastHit: ", "X", 25, 72, 20),
+		LaneClear =	CreateKeyButton("~LaneClear: ", "C", 25, 94, 20),
+		Mixed =		CreateKeyButton("~Mixed: ", "V", 25, 116, 20)
+	}
+	
 	--{ Database data }--
-	self.AttackActionTime = tonumber(Allclass.HeroDatabase:GetData(self.Player, "attackactiontime")) 
-	self.ProjectileName = self.HeroDatabase:GetData(self.Player, "attackprojectile")
-
+	self.AttackActionTime = tonumber(self.HeroDatabase:GetData(self.Player, "attackactiontime")) 
+	self.Projectiles = self.HeroDatabase:GetData(self.Player, "attackprojectile")
 	--{ Callbacks } -- 
 	Callback.Bind("AllocateEntity", function(uid) self:OnEntity(uid) end)
 	Callback.Bind("DeleteEntity", function(uid) self:OnDeleteEntity(uid) end)
@@ -51,7 +59,7 @@ function Orbwalker:__init(defaultMode)
 	Callback.Bind("Draw", function() self:Draw() end)
 
 	-- do not set this to true
-	self.DebugMode = true
+	self.DebugMode = false
 	--Game.PrintToChat("Orbwalker loaded for : "..self.charName)
 	self:LoadExisting() 
 	--return the instance
@@ -65,11 +73,13 @@ end
 function Orbwalker:CanAttack()
 	return self:Time() > self.LP + self.Utility:ComputeAASpeed(self.Player)
 end
- 
-function Orbwalker:IsValid(entity)
-	local ename = entity.name 
 
-	return entity.valid and entity.isProjectileEntity and ename:lower():find("attack") and ename:find(self.charName)
+function Orbwalker:IsMyProjectile(entityname) 
+	return table.contains(self.Projectiles, entityname) 
+end 
+
+function Orbwalker:IsValid(entity)
+	return entity.valid and entity.isProjectileEntity and self:IsMyProjectile(entity.name)
 end
  
 function Orbwalker:ToEntity(uid)
@@ -93,18 +103,26 @@ function Orbwalker:Attack(target)
 end
 
 function Orbwalker:CanReach(Target)
-	return self.Player.pos:DistanceTo(Target.pos) < self.Player.attackRange + (Target.boundsRadius * 3)
+	return Target ~= nil and Target.valid and self.Player.pos:DistanceTo(Target.pos) < self.Player.attackRange + (Target.boundsRadius * 3)
 end
 
 function Orbwalker:GetTarget(mode)
-	--{Get The lowest test clone, Developement only}--
-	return self.DebugMode and Allclass.HeroManager:GetClosetTestClone()
+	local Clones = _G.Allclass.HeroManager:GetTestClones()
+	local LessHP, LHPUnit = 500000, nil	
+	for i, h in pairs(Clones) do
+		if h.team ~= myHero.team and self:CanReach(h) then
+			local VHP = _G.Allclass.Utility:GetVirtualHP(h)
+			if VHP < LessHP then
+				LessHP, LHPUnit = VHP, h
+			end
+		end
+	end
+	return LHPUnit
 end
 
 function Orbwalker:Draw() 
 	self.DrawHandler.Circle(myHero.x, myHero.y, myHero.z, self.Player.attackRange + (self.Player.boundsRadius * 3), 1)
-end 
-
+end
 
 function Orbwalker:OnEntity(uid)
 	Allclass.DelayAction(function(uid)
@@ -112,23 +130,21 @@ function Orbwalker:OnEntity(uid)
 		if ent and self:IsValid(ent) then
 			self.LP = self:Time() - (self.AttackActionTime + self:Latency())
 		end
-
 		if ent ~= nil and ent and (ent.isCreepEntity or ent.isNeutralEntity) and ent.team ~= self.Player.team then
 			table.insert(self.availableMinions, { entity = ent, requiredHits = 0, MarkedToWait = false, HitRate = 0 })
 		end
 	end , 0.5, {uid})
 end
 
-function Orbwalker:OnDeleteEntity(uid) 
-	Allclass.DelayAction(function(uid)
+function Orbwalker:OnDeleteEntity(uid)
+	Allclass.DelayAction(function(uid) 
 		for each, e in pairs(self.availableMinions) do 
-			if e.entity.uid == uid then 
-				table.remove(self.availableMinions, each)
+			if e.entity.uid == uid then
+				table.remove(self.availableMinions, each) 
 			end 
 		end 
 	end , 0.5, {uid})
-end 
-
+end
 
 function Orbwalker:UpdateAll()
 	local osc = os.clock()
@@ -173,30 +189,31 @@ end
 
 function Orbwalker:Tick()
 	self.Target = self:GetTarget()
-
-	if Keyboard.IsKeyDown(string.byte("E")) then
+	if self.Button.Fight:IsPressed() then
 		self:Orbwalk(self.Target, mousePos())
-	elseif Keyboard.IsKeyDown(string.byte("X")) then 
+	elseif self.Button.LastHit:IsPressed() then 
 		self:LastHit()
-	elseif Keyboard.IsKeyDown(string.byte("T")) then 
+	elseif self.Button.LaneClear:IsPressed() then 
 		self:LaneClear()
+	elseif self.Button.Mixed:IsPressed() then
+		if self.Target ~= nil then
+			self:Orbwalk(self.Target, mousePos())
+		else
+			self:LastHit()
+		end
 	end 
-	
-	--if self.DebugMode then print(self:CanAttack()) end 
 end
  
 function Orbwalker:Orbwalk(Target,To)
 	if Target and self:CanReach(Target) and self:CanAttack() then
 		self:Attack(Target)
 	else
-		self:Move(To)
+		self:Move(To or mousePos())
 	end
 end
 
-
 function Orbwalker:LastHit()
 	local lowest = self.EntityManager:GetLowest(self:GetRange(), self.Player.pos, Game.EntityManager_ENEMY)
-
 	if lowest and lowest.health <= self.Player.attackDamageMax then 
 		self:Orbwalk(lowest, mousePos())
 	else 
@@ -204,16 +221,13 @@ function Orbwalker:LastHit()
 	end 
 end 
 
-function Orbwalker:LaneClear() 
-
+function Orbwalker:LaneClear()
 	local GetBestLaneClearEntity = function() 
 		self:update() 
 		local entitys = self.availableMinions
-		local best, rq = nil, math.huge 
-		
+		local best, rq = nil, math.huge		
 		for each, e in pairs(entitys) do 
-			local entity = e.entity
-			
+			local entity = e.entity			
 			if self:CanReach(entity) then 
 				local requiredHits = entity.health / self.Player.attackDamageMax
 				if e.MarkedToWait  and entity.health <= self.Player.attackDamageMax then  
@@ -223,36 +237,23 @@ function Orbwalker:LaneClear()
 						best = e
 						rq = requiredHits 
 					end
-				end  
- 
+				end 
 			end 
-		end 
-
+		end
 		return best 
-	end 
-
+	end
 	local ShouldAttack = function(ent)
 		return ent.health / self.Player.attackDamageMax >= 2
-	end 
-
+	end
 	local best = GetBestLaneClearEntity()
-	print(best == nil)
-	local entity 
-
-	if best ~= nil then entity = best.entity end 
-
-	if entity and not ShouldAttack(entity) and entity.health >= self.Player.attackDamageMax then best.MarkedToWait = true return end 
-
-	if entity and ShouldAttack(entity) then 
+	local entity
+	if best ~= nil then entity = best.entity end
+	if entity and not ShouldAttack(entity) and entity.health >= self.Player.attackDamageMax then best.MarkedToWait = true return end
+	if entity and ShouldAttack(entity) then
 		self:Orbwalk(entity, mousePos())
-	elseif best and not ShouldAttack(entity) and entity.health <= self.Player.attackDamageMax then 
+	elseif best and not ShouldAttack(entity) and entity.health <= self.Player.attackDamageMax then
 		self:Orbwalk(entity, mousePos())
 	else 
 		self:Move(mousePos())
 	end 
 end 
-
-
-
-
-
