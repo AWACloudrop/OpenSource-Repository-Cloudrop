@@ -1,3 +1,5 @@
+class "spellDataBase"
+
 function spellDataBase:__init()
 	self.Database = {
 			["Aatrox"] = {
