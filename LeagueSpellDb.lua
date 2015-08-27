@@ -1,25 +1,5 @@
 function spellDataBase:__init()
 	self.Database = {
-			[""] = {
-
-				["TestSkillShot"] = {
-
-					["SpellName"] = "TestSkillShot",
-					["Slot"] = "R",
-					["Type"] = 'Circular',
-					["Delay"] = 600,
-					["Range"] = 650,
-					["Radius"] = 350,
-					["MissileSpeed"] = math.huge,
-					["FixedRange"] = false,
-					["AddHitbox"] = true,
-					["DangerValue"] = 5,
-					["IsDangerous"] = true,
-					["MissileSpellName"] = "TestSkillShot",
-				},
-
-			},
-
 			["Aatrox"] = {
 
 				["AatroxQ"] = {
